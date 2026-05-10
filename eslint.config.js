@@ -3,6 +3,7 @@ import reactHooks from 'eslint-plugin-react-hooks'
 
 export default antfu({
   formatters: true,
+  markdown: false,
   rules: {
     'unused-imports/no-unused-vars': 'warn',
     'no-console': 'off',

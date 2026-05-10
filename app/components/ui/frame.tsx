@@ -1,19 +1,15 @@
 import type * as React from 'react'
-
 import { cn } from '~/lib/utils'
 
-function Frame({
+export function Frame({
   className,
-  stackedPanels = false,
   ...props
-}: React.ComponentProps<'div'> & { stackedPanels?: boolean }) {
+}: React.ComponentProps<'div'>): React.ReactElement {
   return (
     <div
       className={cn(
-        'relative flex flex-col rounded-2xl bg-muted/50 p-1',
-        stackedPanels
-          ? '*:has-[+[data-slot=frame-panel]]:rounded-b-none *:has-[+[data-slot=frame-panel]]:before:hidden dark:*:has-[+[data-slot=frame-panel]]:before:block *:[[data-slot=frame-panel]+[data-slot=frame-panel]]:rounded-t-none *:[[data-slot=frame-panel]+[data-slot=frame-panel]]:border-t-0 dark:*:[[data-slot=frame-panel]+[data-slot=frame-panel]]:before:hidden'
-          : '*:[[data-slot=frame-panel]+[data-slot=frame-panel]]:mt-1',
+        'relative flex flex-col rounded-2xl bg-muted/72 p-1',
+        '*:[[data-slot=frame-panel]+[data-slot=frame-panel]]:mt-1',
         className,
       )}
       data-slot="frame"
@@ -22,11 +18,14 @@ function Frame({
   )
 }
 
-function FramePanel({ className, ...props }: React.ComponentProps<'div'>) {
+export function FramePanel({
+  className,
+  ...props
+}: React.ComponentProps<'div'>): React.ReactElement {
   return (
     <div
       className={cn(
-        'relative rounded-xl border bg-background bg-clip-padding p-5 shadow-xs before:pointer-events-none before:absolute before:inset-0 before:rounded-[calc(var(--radius-xl)-1px)] before:shadow-[0_1px_--theme(--color-black/4%)] dark:bg-clip-border dark:before:shadow-[0_-1px_--theme(--color-white/8%)]',
+        'relative rounded-xl border bg-background bg-clip-padding p-5 shadow-xs/5 before:pointer-events-none before:absolute before:inset-0 before:rounded-[calc(var(--radius-xl)-1px)] before:shadow-[0_1px_--theme(--color-black/4%)] dark:before:shadow-[0_-1px_--theme(--color-white/6%)]',
         className,
       )}
       data-slot="frame-panel"
@@ -35,7 +34,10 @@ function FramePanel({ className, ...props }: React.ComponentProps<'div'>) {
   )
 }
 
-function FrameHeader({ className, ...props }: React.ComponentProps<'header'>) {
+export function FrameHeader({
+  className,
+  ...props
+}: React.ComponentProps<'header'>): React.ReactElement {
   return (
     <header
       className={cn('flex flex-col px-5 py-4', className)}
@@ -45,7 +47,10 @@ function FrameHeader({ className, ...props }: React.ComponentProps<'header'>) {
   )
 }
 
-function FrameTitle({ className, ...props }: React.ComponentProps<'div'>) {
+export function FrameTitle({
+  className,
+  ...props
+}: React.ComponentProps<'div'>): React.ReactElement {
   return (
     <div
       className={cn('font-semibold text-sm', className)}
@@ -55,10 +60,10 @@ function FrameTitle({ className, ...props }: React.ComponentProps<'div'>) {
   )
 }
 
-function FrameDescription({
+export function FrameDescription({
   className,
   ...props
-}: React.ComponentProps<'div'>) {
+}: React.ComponentProps<'div'>): React.ReactElement {
   return (
     <div
       className={cn('text-muted-foreground text-sm', className)}
@@ -68,21 +73,15 @@ function FrameDescription({
   )
 }
 
-function FrameFooter({ className, ...props }: React.ComponentProps<'footer'>) {
+export function FrameFooter({
+  className,
+  ...props
+}: React.ComponentProps<'footer'>): React.ReactElement {
   return (
     <footer
-      className={cn('flex flex-col gap-1 px-5 py-4', className)}
+      className={cn('px-5 py-4', className)}
       data-slot="frame-panel-footer"
       {...props}
     />
   )
-}
-
-export {
-  Frame,
-  FrameDescription,
-  FrameFooter,
-  FrameHeader,
-  FramePanel,
-  FrameTitle,
 }
