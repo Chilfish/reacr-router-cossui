@@ -15,7 +15,7 @@ function Particle() {
   return (
     <AlertDialog>
       <AlertDialogTrigger render={<Button variant="destructive-outline" />}>
-        Delete Account
+        删除账号
       </AlertDialogTrigger>
       <AlertDialogPopup>
         <AlertDialogHeader>

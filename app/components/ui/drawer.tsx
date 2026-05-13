@@ -227,6 +227,8 @@ export function DrawerPopup({
   )
 }
 
+const DrawerContent: typeof DrawerPrimitive.Content = DrawerPrimitive.Content
+
 export function DrawerHeader({
   className,
   allowSelection = false,
@@ -381,9 +383,6 @@ export function DrawerBar({
     render,
   })
 }
-
-export const DrawerContent: typeof DrawerPrimitive.Content
-  = DrawerPrimitive.Content
 
 export function DrawerMenu({
   className,

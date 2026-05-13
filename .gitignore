@@ -12,3 +12,4 @@ tmp/
 storybook-static
 
 .vercel/
+.alma-snapshots

@@ -22,125 +22,140 @@ export function useMedia() {
 
 // --- Components ---
 
-const Media = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
-  ({ className, children, ...props }, ref) => {
-    const [status, setStatus] = React.useState<MediaStatus>('loading')
+function Media({
+  className,
+  children,
+  ref,
+  ...props
+}: React.ComponentProps<'div'> & { ref?: React.Ref<HTMLDivElement> }) {
+  const [status, setStatus] = React.useState<MediaStatus>('loading')
 
-    return (
-      <MediaContext.Provider value={{ status, setStatus }}>
-        <div
-          ref={ref}
-          className={cn('relative overflow-hidden', className)}
-          {...props}
-        >
-          {children}
-        </div>
-      </MediaContext.Provider>
-    )
-  },
-)
+  return (
+    <MediaContext.Provider value={{ status, setStatus }}>
+      <div
+        ref={ref}
+        className={cn('relative overflow-hidden', className)}
+        {...props}
+      >
+        {children}
+      </div>
+    </MediaContext.Provider>
+  )
+}
 Media.displayName = 'Media'
 
 // --- Media Image ---
 
 export interface MediaImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {}
 
-const MediaImage = React.forwardRef<HTMLImageElement, MediaImageProps>(
-  ({ className, onLoad, onError, ...props }, ref) => {
-    const { status, setStatus } = useMedia()
-    const internalRef = React.useRef<HTMLImageElement>(null)
+function MediaImage({
+  className,
+  onLoad,
+  onError,
+  alt = '',
+  ref,
+  ...props
+}: MediaImageProps & { ref?: React.Ref<HTMLImageElement> }) {
+  const { status, setStatus } = useMedia()
+  const internalRef = React.useRef<HTMLImageElement>(null)
 
-    // Handle cached images
-    React.useLayoutEffect(() => {
-      if (internalRef.current?.complete) {
-        setStatus('success')
-      }
-    }, [setStatus])
-
-    const handleLoad = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+  // Handle cached images
+  React.useLayoutEffect(() => {
+    if (internalRef.current?.complete) {
       setStatus('success')
-      onLoad?.(e)
     }
+  }, [setStatus])
 
-    const handleError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
-      setStatus('error')
-      onError?.(e)
+  const handleLoad = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+    setStatus('success')
+    onLoad?.(e)
+  }
+
+  const handleError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+    setStatus('error')
+    onError?.(e)
+  }
+
+  // Merge refs
+  const mergedRef = (node: HTMLImageElement) => {
+    internalRef.current = node
+    if (typeof ref === 'function') {
+      ref(node)
     }
-
-    // Merge refs
-    const mergedRef = (node: HTMLImageElement) => {
-      internalRef.current = node
-      if (typeof ref === 'function') {
-        ref(node)
-      }
-      else if (ref) {
-        ref.current = node
-      }
+    else if (ref) {
+      ref.current = node
     }
+  }
 
-    return (
-      <img
-        ref={mergedRef}
-        onLoad={handleLoad}
-        onError={handleError}
-        data-status={status}
-        loading="lazy"
-        className={cn(
-          'h-full w-full object-cover transition-opacity duration-300',
-          status === 'loading' ? 'opacity-0' : 'opacity-100',
-          status === 'error' ? 'hidden' : '',
-          className,
-        )}
-        {...props}
-      />
-    )
-  },
-)
+  return (
+    <img
+      ref={mergedRef}
+      alt={alt}
+      onLoad={handleLoad}
+      onError={handleError}
+      data-status={status}
+      loading="lazy"
+      className={cn(
+        'h-full w-full object-cover transition-opacity duration-300',
+        status === 'loading' ? 'opacity-0' : 'opacity-100',
+        status === 'error' ? 'hidden' : '',
+        className,
+      )}
+      {...props}
+    />
+  )
+}
+MediaImage.displayName = 'MediaImage'
 
 // --- Media Video ---
 
 export interface MediaVideoProps extends React.VideoHTMLAttributes<HTMLVideoElement> {}
 
-const MediaVideo = React.forwardRef<HTMLVideoElement, MediaVideoProps>(
-  ({ className, onLoadedData, onError, ...props }, ref) => {
-    const { status, setStatus } = useMedia()
+function MediaVideo({
+  className,
+  onLoadedData,
+  onError,
+  ref,
+  ...props
+}: MediaVideoProps & { ref?: React.Ref<HTMLVideoElement> }) {
+  const { status, setStatus } = useMedia()
 
-    const handleLoadedData = (e: React.SyntheticEvent<HTMLVideoElement, Event>) => {
-      setStatus('success')
-      onLoadedData?.(e)
-    }
+  const handleLoadedData = (e: React.SyntheticEvent<HTMLVideoElement, Event>) => {
+    setStatus('success')
+    onLoadedData?.(e)
+  }
 
-    const handleError = (e: React.SyntheticEvent<HTMLVideoElement, Event>) => {
-      setStatus('error')
-      onError?.(e)
-    }
+  const handleError = (e: React.SyntheticEvent<HTMLVideoElement, Event>) => {
+    setStatus('error')
+    onError?.(e)
+  }
 
-    return (
-      <video
-        ref={ref}
-        onLoadedData={handleLoadedData}
-        onError={handleError}
-        data-status={status}
-        className={cn(
-          'h-full w-full object-cover transition-opacity duration-300',
-          status === 'loading' ? 'opacity-0' : 'opacity-100',
-          status === 'error' ? 'hidden' : '',
-          className,
-        )}
-        {...props}
-      />
-    )
-  },
-)
-
+  return (
+    <video
+      ref={ref}
+      onLoadedData={handleLoadedData}
+      onError={handleError}
+      data-status={status}
+      className={cn(
+        'h-full w-full object-cover transition-opacity duration-300',
+        status === 'loading' ? 'opacity-0' : 'opacity-100',
+        status === 'error' ? 'hidden' : '',
+        className,
+      )}
+      {...props}
+    />
+  )
+}
 MediaVideo.displayName = 'MediaVideo'
 
 // --- Loading State (Skeleton) ---
 
-const MediaLoading = React.forwardRef<
-  HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement>
->(({ className, children, ...props }, ref) => {
+function MediaLoading({
+  className,
+  children,
+  ref,
+  ...props
+}: React.ComponentProps<'div'> & { ref?: React.Ref<HTMLDivElement> }) {
   const { status } = useMedia()
 
   if (status !== 'loading')
@@ -161,15 +176,16 @@ const MediaLoading = React.forwardRef<
       {...props}
     />
   )
-})
+}
 MediaLoading.displayName = 'MediaLoading'
 
 // --- Fallback State ---
 
-const MediaFallback = React.forwardRef<
-  HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement>
->(({ className, ...props }, ref) => {
+function MediaFallback({
+  className,
+  ref,
+  ...props
+}: React.ComponentProps<'div'> & { ref?: React.Ref<HTMLDivElement> }) {
   const { status } = useMedia()
 
   if (status !== 'error')
@@ -185,7 +201,7 @@ const MediaFallback = React.forwardRef<
       {...props}
     />
   )
-})
+}
 MediaFallback.displayName = 'MediaFallback'
 
 export { Media, MediaFallback, MediaImage, MediaLoading, MediaVideo }
