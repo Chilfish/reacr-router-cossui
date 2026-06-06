@@ -9,12 +9,16 @@ import {
   Scripts,
   ScrollRestoration,
 } from 'react-router'
-import { ThemeProvider } from '~/components/ThemeProvider'
+import { ThemeProvider } from '~/components/shared/ThemeProvider'
 import { AnchoredToastProvider, ToastProvider } from '~/components/ui/toast'
 import stylesheet from './app.css?url'
-import { ProgressBar } from './components/progress-bar'
+import { ProgressBar } from './components/shared/progress-bar'
 import { Button } from './components/ui/button'
 import { useNonce } from './hooks/use-nonce'
+import { generateSEOMeta, siteConfig } from './lib/seo'
+
+export const meta: Route.MetaFunction = () =>
+  generateSEOMeta()
 
 export const links: Route.LinksFunction = () => [
   { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
@@ -31,6 +35,9 @@ export const links: Route.LinksFunction = () => [
     rel: 'stylesheet',
     href: 'https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap',
   },
+  { rel: 'icon', type: 'image/svg+xml', href: '/vite.svg' },
+  { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' },
+  { rel: 'manifest', href: '/manifest.webmanifest' },
 ]
 
 export function Layout({ children }: { children: React.ReactNode }) {
@@ -44,8 +51,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
     >
       <head>
         <meta charSet="utf-8" />
-        <link rel="icon" type="image/jpeg" href="/icon.webp" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="theme-color" content={siteConfig.themeColor} />
+        <meta name="color-scheme" content="light dark" />
         <Meta />
         <Links />
         <link rel="stylesheet" href={stylesheet} precedence="high" />
@@ -84,27 +92,19 @@ export function HydrateFallback() {
 }
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
-  let message = 'Oops! Something went wrong.'
-  let details = 'An unexpected error occurred. Please try again later.'
+  let message = '出错了'
+  let details = '发生了意外错误，请稍后重试。'
   let stack: string | undefined
 
   if (isRouteErrorResponse(error)) {
-    message = error.status === 404 ? 'Page Not Found' : 'An Error Occurred'
-    details
-      = error.status === 404
-        ? 'The page you\'re looking for doesn\'t exist.'
-        : error.data?.message || error.statusText
+    message = error.status === 404 ? '页面未找到' : '发生错误'
+    details = error.status === 404
+      ? '您要查找的页面不存在。'
+      : error.data?.message || error.statusText
   }
-  else if (error && error instanceof Error) {
-    if (error.message.includes('Invalid tweet id')) {
-      message = error.message
-      details = 'The tweet id is invalid. Please try again.'
-    }
-    else {
-      message = error.message
-      details = 'Something went wrong.'
-      stack = error.stack
-    }
+  else if (error instanceof Error) {
+    message = error.message
+    stack = error.stack
   }
 
   console.error('ErrorBoundary caught an error:', error)
@@ -122,21 +122,11 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
             <code>{stack}</code>
           </pre>
         )}
-        <div
-          className="mt-8 flex items-center gap-4"
-        >
-          <Button
-            variant="link"
-            render={<Link to="/" />}
-          >
+        <div className="mt-8 flex items-center gap-4">
+          <Button variant="link" render={<Link to="/" />}>
             返回首页
           </Button>
-
-          <Button
-            onClick={() => {
-              window.location.reload()
-            }}
-          >
+          <Button onClick={() => window.location.reload()}>
             刷新重试
           </Button>
         </div>

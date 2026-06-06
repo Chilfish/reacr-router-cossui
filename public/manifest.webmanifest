@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json.schemastore.org/web-manifest-combined.json",
+  "name": "React Router App",
+  "short_name": "RR App",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f5f9fb",
+  "theme_color": "#f5f9fb",
+  "description": "基于 React Router v7 + coss-ui 的全栈 Web 应用",
+  "icons": [
+    {
+      "src": "/vite.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

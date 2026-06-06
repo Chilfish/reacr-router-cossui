@@ -1,51 +1,58 @@
-import { Example, ExampleWrapper } from '~/components/example'
-import {
-  AlertDialog,
-  AlertDialogClose,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogPopup,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from '~/components/ui/alert-dialog'
+import type { Route } from './+types/home'
+import { AlertDialog, AlertDialogClose, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogPopup, AlertDialogTitle, AlertDialogTrigger } from '~/components/ui/alert-dialog'
 import { Button } from '~/components/ui/button'
+import { generateSEOMeta } from '~/lib/seo'
 
-function Particle() {
-  return (
-    <AlertDialog>
-      <AlertDialogTrigger render={<Button variant="destructive-outline" />}>
-        删除账号
-      </AlertDialogTrigger>
-      <AlertDialogPopup>
-        <AlertDialogHeader>
-          <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
-          <AlertDialogDescription>
-            This action cannot be undone. This will permanently delete your
-            account and remove your data from our servers.
-          </AlertDialogDescription>
-        </AlertDialogHeader>
-        <AlertDialogFooter>
-          <AlertDialogClose render={<Button variant="ghost" />}>
-            Cancel
-          </AlertDialogClose>
-          <AlertDialogClose render={<Button variant="destructive" />}>
-            Delete Account
-          </AlertDialogClose>
-        </AlertDialogFooter>
-      </AlertDialogPopup>
-    </AlertDialog>
-  )
+export function meta(): Route.MetaDescriptors {
+  return generateSEOMeta({ title: '首页' })
 }
 
-export function App() {
+export default function Home() {
   return (
-    <ExampleWrapper>
-      <Example title="Test">
-        <Particle />
-      </Example>
-    </ExampleWrapper>
+    <div className="flex min-h-screen flex-col items-center justify-center bg-background px-4">
+      <header className="mb-12 text-center">
+        <h1 className="text-3xl font-bold text-foreground tracking-tight">
+          React Router v7
+        </h1>
+        <p className="mt-2 text-muted-foreground">
+          coss-ui · Tailwind CSS v4 · Base UI
+        </p>
+      </header>
+
+      <div className="flex flex-wrap items-center justify-center gap-3">
+        <Button variant="default">Primary</Button>
+        <Button variant="secondary">Secondary</Button>
+        <Button variant="outline">Outline</Button>
+        <Button variant="ghost">Ghost</Button>
+
+        <AlertDialog>
+          <AlertDialogTrigger render={<Button variant="destructive" />}>
+            Destructive
+          </AlertDialogTrigger>
+          <AlertDialogPopup>
+            <AlertDialogHeader>
+              <AlertDialogTitle>确认删除</AlertDialogTitle>
+              <AlertDialogDescription>
+                此操作不可撤销。这将永久删除你的账户和相关数据。
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogClose render={<Button variant="ghost" />}>
+                取消
+              </AlertDialogClose>
+              <AlertDialogClose render={<Button variant="destructive" />}>
+                确认删除
+              </AlertDialogClose>
+            </AlertDialogFooter>
+          </AlertDialogPopup>
+        </AlertDialog>
+      </div>
+
+      <footer className="mt-16 text-xs text-muted-foreground">
+        开始编辑
+        {' '}
+        <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-xs">app/routes/home.tsx</code>
+      </footer>
+    </div>
   )
 }
-
-export default App
