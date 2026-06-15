@@ -283,4 +283,3 @@
 >
 > - **[GENERAL.md](./components/GENERAL.md)** — 按钮、输入框、卡片等通用原子组件规范
 > - **[SETTINGS.md](./components/SETTINGS.md)** — 设置页面的强制布局模式
-> - **[select-best-practices.md](./components/select-best-practices.md)** — Select 组件 API 规范
