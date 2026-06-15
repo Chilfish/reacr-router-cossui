@@ -5,7 +5,7 @@ export default antfu({
   formatters: true,
   markdown: false,
   rules: {
-    'unused-imports/no-unused-vars': 'warn',
+    'unused-imports/no-unused-vars': 'off',
     'no-console': 'off',
     'antfu/no-top-level-await': 'off',
     'node/prefer-global/buffer': 'off',

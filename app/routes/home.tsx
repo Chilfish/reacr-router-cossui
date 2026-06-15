@@ -1,6 +1,23 @@
 import type { Route } from './+types/home'
-import { AlertDialog, AlertDialogClose, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogPopup, AlertDialogTitle, AlertDialogTrigger } from '~/components/ui/alert-dialog'
+import {
+  AlertDialog,
+  AlertDialogClose,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogPopup,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from '~/components/ui/alert-dialog'
 import { Button } from '~/components/ui/button'
+import {
+  Select,
+  SelectItem,
+  SelectPopup,
+  SelectTrigger,
+  SelectValue,
+} from '~/components/ui/select'
+
 import { generateSEOMeta } from '~/lib/seo'
 
 export function meta(): Route.MetaDescriptors {
@@ -8,6 +25,13 @@ export function meta(): Route.MetaDescriptors {
 }
 
 export default function Home() {
+  const items = [
+    { description: 'npx create-next-app', label: 'Next.js', value: 'next' },
+    { description: 'npm create vite@latest', label: 'Vite', value: 'vite' },
+    { description: 'npm create astro@latest', label: 'Astro', value: 'astro' },
+    { description: 'npx create-remix', label: 'Remix', value: 'remix' },
+  ]
+
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-background px-4">
       <header className="mb-12 text-center">
@@ -48,10 +72,45 @@ export default function Home() {
         </AlertDialog>
       </div>
 
+      <div>
+        <Select
+          aria-label="Select framework with command"
+          defaultValue={items[0]}
+          itemToStringValue={item => item.value}
+        >
+          <SelectTrigger className="py-1">
+            <SelectValue>
+              {item => (
+                <span className="flex flex-col">
+                  <span className="truncate">{item.label}</span>
+                  <span className="truncate text-muted-foreground text-xs">
+                    {item.description}
+                  </span>
+                </span>
+              )}
+            </SelectValue>
+          </SelectTrigger>
+          <SelectPopup>
+            {items.map(item => (
+              <SelectItem key={item.value} value={item}>
+                <span className="flex flex-col">
+                  <span className="truncate">{item.label}</span>
+                  <span className="truncate text-muted-foreground text-xs">
+                    {item.description}
+                  </span>
+                </span>
+              </SelectItem>
+            ))}
+          </SelectPopup>
+        </Select>
+      </div>
+
       <footer className="mt-16 text-xs text-muted-foreground">
         开始编辑
         {' '}
-        <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-xs">app/routes/home.tsx</code>
+        <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-xs">
+          app/routes/home.tsx
+        </code>
       </footer>
     </div>
   )
