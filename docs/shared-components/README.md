@@ -16,9 +16,9 @@
 
 ## 工具
 
-| 工具 | 文件 | 用途 |
-|------|------|------|
-| SEO    | `~/lib/seo.ts` | 生成标准 SEO meta 标签、OG、Twitter Card、JSON-LD |
+| 工具 | 文件           | 用途                                              |
+| ---- | -------------- | ------------------------------------------------- |
+| SEO  | `~/lib/seo.ts` | 生成标准 SEO meta 标签、OG、Twitter Card、JSON-LD |
 
 更多 SEO 用法参考 **[seo.md](./seo.md)**。
 

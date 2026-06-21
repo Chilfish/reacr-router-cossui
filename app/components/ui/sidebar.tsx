@@ -414,13 +414,10 @@ export function SidebarContent({
   ...props
 }: React.ComponentProps<'div'>): React.ReactElement {
   return (
-    <ScrollArea
-      className="**:data-[slot=scroll-area-scrollbar]:hidden"
-      scrollFade
-    >
+    <ScrollArea className="min-h-0 flex-1" fill scrollFade>
       <div
         className={cn(
-          'flex min-h-0 flex-1 flex-col gap-2 overflow-auto group-data-[collapsible=icon]:overflow-hidden',
+          'flex h-full flex-col gap-2 group-data-[collapsible=icon]:overflow-hidden',
           className,
         )}
         data-sidebar="content"
@@ -649,8 +646,10 @@ export function SidebarMenuSkeleton({
 }: React.ComponentProps<'div'> & {
   showIcon?: boolean
 }): React.ReactElement {
-  // Random width between 50 to 90% — seeded from component mount
-  const [width] = React.useState(() => `${Math.floor(Math.random() * 40) + 50}%`)
+  // Random width between 50 to 90%.
+  const width = () => {
+    return `${Math.floor(Math.random() * 40) + 50}%`
+  }
 
   return (
     <div

@@ -50,14 +50,14 @@ export const meta = ({ data }) => generateSEOMeta({
 
 #### 参数
 
-| 参数 | 类型 | 默认值 | 说明 |
-|------|------|--------|------|
-| `title` | `string` | 站点名称 | 页面标题（自动添加 " — 站点名" 后缀） |
-| `description` | `string` | `siteConfig.description` | 页面描述 |
-| `canonical` | `string` | — | 规范 URL 路径（如 `/about`） |
-| `ogImage` | `string` | `siteConfig.ogImage` | OG 图片 URL |
-| `noIndex` | `boolean` | `false` | 禁止搜索引擎索引 |
-| `jsonLd` | `object \| object[]` | — | JSON-LD 结构化数据 |
+| 参数          | 类型                 | 默认值                   | 说明                                  |
+| ------------- | -------------------- | ------------------------ | ------------------------------------- |
+| `title`       | `string`             | 站点名称                 | 页面标题（自动添加 " — 站点名" 后缀） |
+| `description` | `string`             | `siteConfig.description` | 页面描述                              |
+| `canonical`   | `string`             | —                        | 规范 URL 路径（如 `/about`）          |
+| `ogImage`     | `string`             | `siteConfig.ogImage`     | OG 图片 URL                           |
+| `noIndex`     | `boolean`            | `false`                  | 禁止搜索引擎索引                      |
+| `jsonLd`      | `object \| object[]` | —                        | JSON-LD 结构化数据                    |
 
 ### generateTitle(pageTitle?)
 
@@ -100,6 +100,7 @@ export const meta = () => generateSEOMeta({
 ```
 
 生成标签：
+
 ```html
 <script type="application/ld+json">
   { "@context": "https://schema.org", "@type": "Organization", ... }

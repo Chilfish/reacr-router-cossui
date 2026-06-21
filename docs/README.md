@@ -21,9 +21,6 @@
    - SettingsGroup + SettingsItem 的 5 个标准场景
    - 触发关键词识别、强制检查清单
 
-4. **[ui-design/components/select-best-practices.md](./ui-design/components/select-best-practices.md)** — Select 组件最佳实践
-   - `getLabel` API、4 种常见模式、边缘情况处理
-
 ### 阅读优先级
 
 - **写通用组件/页面** → 先读 OVERVIEW.md，再读 GENERAL.md
