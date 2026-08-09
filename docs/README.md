@@ -1,42 +1,48 @@
 # 项目文档
 
-## UI 设计规范（AI 必读）
+## 文档索引
 
-在编写任何 UI 组件或页面之前，请按以下顺序阅读规范文档：
+| 文档 | 路径 | 何时阅读 |
+|---|---|---|
+| 需求规格 | `requirements/requirements-spec.md` | 新增功能、判断功能边界 |
+| 用户故事 | `requirements/user-stories.md` | 理解用户需求、设计新特性 |
+| 系统架构 | `planning/architecture.md` | 任何架构级变更前（ADR 记录） |
+| 任务清单 | `planning/backlog.md` | 未决任务 + 排期 |
+| 审查记录 | `reviews/` | 了解已知问题清单 |
+| Git 流程 | `engineering/git-workflow.md` | 每次 commit / PR |
+| 代码规范 | `engineering/code-style.md` | 写代码前 |
+| 发布清单 | `engineering/release-checklist.md` | 里程碑发布前 |
+| 事后分析 | `postmortem/README.md` | 写代码前自查「高频雷区」，防复现 |
+| 开发日志 | `development-log/README.md` | 了解历史决策 |
+| UI 设计规范 | `ui-design/OVERVIEW.md` | 涉及 UI 时（设计 Token、排版、组件索引） |
+| 组件规范 | `ui-design/components/GENERAL.md` | 使用 coss-ui 原子组件时 |
+| SEO 工具 | `ui-design/seo.md` | 新增路由写 `meta` 时 |
+| 共享组件 | `shared-components/README.md` | 使用脚手架自带全局组件时 |
 
-### 入口
+## 文档关系
 
-1. **[ui-design/OVERVIEW.md](./ui-design/OVERVIEW.md)** — 设计系统总览
-   - 颜色 Token 速查表、排版层级、间距/圆角系统
-   - 交互物理学（hover/active/focus 规则、动画预设）
-   - 完整组件文件索引（58 个可用组件）
+```
+requirements/（需求真相源 —— 描述「要做什么」）
+  ├── requirements-spec.md   ← FR 编号从这里产生
+  └── user-stories.md        ← 用户视角的表达
 
-### 组件规范
+planning/（规划与执行 —— 描述「怎么做、做到哪了」）
+  ├── architecture.md        ← ADR 记录架构决策
+  ├── backlog.md             ← 未排程任务候选
+  └── todo-*.md             ← 当前阶段行动计划
 
-2. **[ui-design/components/GENERAL.md](./ui-design/components/GENERAL.md)** — 通用原子组件规范
-   - Button、Input、InputGroup、Card、Dialog、Drawer、Toast、Icon
-   - 导入路径、API 速查、常见错误速查（Anti-Patterns）
+engineering/（工程规范 —— 描述「怎么实现」）
+  └── git-workflow.md / code-style.md / release-checklist.md
 
-3. **[ui-design/components/SETTINGS.md](./ui-design/components/SETTINGS.md)** — 设置页面强制模式
-   - SettingsGroup + SettingsItem 的 5 个标准场景
-   - 触发关键词识别、强制检查清单
+reviews/ + postmortem/ + development-log/（复盘与演进 —— 描述「踩了什么坑、怎么不再踩」）
+```
 
-### 阅读优先级
+## 约定
 
-- **写通用组件/页面** → 先读 OVERVIEW.md，再读 GENERAL.md
-- **写设置/配置页面** → 先读 SETTINGS.md，再参考 GENERAL.md
-- **用到 Select** → 读 select-best-practices.md
-- **不确定用哪个组件** → 查 OVERVIEW.md 第 7 节的组件索引
-
-## 关键原则速记
-
-- 所有颜色使用 CSS 变量 Token（`bg-background`、`text-muted-foreground` 等），禁止硬编码
-- Dark Mode 是一等公民，所有组件必须兼容
-- 优先复用 `~/components/ui/` 下已有组件
-- 导入路径统一用 `~/components/ui/<name>`
-- 移动端优先，再用 `sm:`/`md:`/`lg:` 增强
-- 所有交互必须有过渡动画，时长 150-350ms
-
-## 共享组件文档
-
-脚手架自带的全局组件（ThemeProvider、ProgressBar 等）文档在 **[shared-components/](./shared-components/README.md)**。
+1. 所有文档用中文（根级 README / CHANGELOG / CONTRIBUTING / LICENSE 除外）
+2. 需求变更时同步更新 `requirements/requirements-spec.md` 并记录日期
+3. 关键架构决策记录在 `planning/architecture.md`（ADR 格式）
+4. 所有 PR 更新 `CHANGELOG.md`（Unreleased 节）
+5. 开发日志按天记录在 `development-log/YYYY-MM-DD.md`
+6. 已完成阶段的计划文档用 `git mv` 移到 `archive/`；存档不主动读取
+7. 新 Bug 模式写 postmortem，预防项同步到 `CLAUDE.md` / `engineering/git-workflow.md`
