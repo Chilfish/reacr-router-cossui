@@ -1,7 +1,5 @@
-'use client'
-
 import type * as React from 'react'
-import { OTPFieldPreview as OTPFieldPrimitive } from '@base-ui/react/otp-field'
+import { OTPField as OTPFieldPrimitive } from '@base-ui/react/otp-field'
 import { Separator } from '~/components/ui/separator'
 import { cn } from '~/lib/utils'
 

@@ -1,5 +1,3 @@
-'use client'
-
 import type * as React from 'react'
 import type { Button } from '~/components/ui/button'
 import { mergeProps } from '@base-ui/react/merge-props'

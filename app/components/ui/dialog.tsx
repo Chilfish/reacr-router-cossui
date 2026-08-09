@@ -1,5 +1,3 @@
-'use client'
-
 import type React from 'react'
 import { Dialog as DialogPrimitive } from '@base-ui/react/dialog'
 import { mergeProps } from '@base-ui/react/merge-props'
@@ -203,7 +201,7 @@ export function DialogPanel({
   }
 
   return (
-    <ScrollArea scrollFade={scrollFade}>
+    <ScrollArea overscrollContain scrollFade={scrollFade}>
       {useRender({
         defaultTagName: 'div',
         props: mergeProps<'div'>(defaultProps, props),
