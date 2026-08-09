@@ -8,6 +8,12 @@
 data/
 tmp/
 
+# Vitest coverage
+/coverage/
+
+# Local skill junctions (content tracked under .agents/skills/)
+/.claude/
+
 *storybook.log
 storybook-static
 
