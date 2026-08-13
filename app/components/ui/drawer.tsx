@@ -1,5 +1,3 @@
-'use client'
-
 import type React from 'react'
 import { Checkbox as CheckboxPrimitive } from '@base-ui/react/checkbox'
 import { Drawer as DrawerPrimitive } from '@base-ui/react/drawer'
@@ -119,7 +117,7 @@ export function DrawerViewport({
   return (
     <DrawerPrimitive.Viewport
       className={cn(
-        'fixed inset-0 z-50 [--bleed:--spacing(12)] [--inset:--spacing(0)]',
+        'fixed inset-0 z-50 [--bleed:--spacing(12)] [--inset:0px]',
         'touch-none',
         position === 'bottom' && 'grid grid-rows-[1fr_auto] pt-12',
         position === 'top' && 'grid grid-rows-[auto_1fr] pb-12',
@@ -339,7 +337,11 @@ export function DrawerPanel({
 
   if (scrollable) {
     return (
-      <ScrollArea className="touch-auto" scrollFade={scrollFade}>
+      <ScrollArea
+        className="touch-auto"
+        overscrollContain
+        scrollFade={scrollFade}
+      >
         {content}
       </ScrollArea>
     )

@@ -1,5 +1,3 @@
-'use client'
-
 import type React from 'react'
 import { Toolbar as ToolbarPrimitive } from '@base-ui/react/toolbar'
 import { cn } from '~/lib/utils'

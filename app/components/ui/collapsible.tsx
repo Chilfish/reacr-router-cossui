@@ -1,5 +1,3 @@
-'use client'
-
 import type React from 'react'
 import { Collapsible as CollapsiblePrimitive } from '@base-ui/react/collapsible'
 import { cn } from '~/lib/utils'

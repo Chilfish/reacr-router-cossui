@@ -1,5 +1,3 @@
-'use client'
-
 import type { VariantProps } from 'class-variance-authority'
 import { mergeProps } from '@base-ui/react/merge-props'
 import { useRender } from '@base-ui/react/use-render'
@@ -414,7 +412,7 @@ export function SidebarContent({
   ...props
 }: React.ComponentProps<'div'>): React.ReactElement {
   return (
-    <ScrollArea className="min-h-0 flex-1" fill scrollFade>
+    <ScrollArea className="min-h-0 flex-1" fill overscrollContain scrollFade>
       <div
         className={cn(
           'flex h-full flex-col gap-2 group-data-[collapsible=icon]:overflow-hidden',
@@ -646,8 +644,12 @@ export function SidebarMenuSkeleton({
 }: React.ComponentProps<'div'> & {
   showIcon?: boolean
 }): React.ReactElement {
-  // Random width between 50 to 90% — seeded from component mount
-  const [width] = React.useState(() => `${Math.floor(Math.random() * 40) + 50}%`)
+  // Stable width between 50 to 90% derived from the instance id (avoid Math.random during render).
+  const id = React.useId()
+  const width = React.useMemo(
+    () => `${([...id].reduce((acc, c) => acc + c.charCodeAt(0), 0) % 40) + 50}%`,
+    [id],
+  )
 
   return (
     <div

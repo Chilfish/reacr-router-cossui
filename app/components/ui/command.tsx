@@ -1,5 +1,3 @@
-'use client'
-
 import type * as React from 'react'
 import { Dialog as CommandDialogPrimitive } from '@base-ui/react/dialog'
 import { SearchIcon } from 'lucide-react'
@@ -200,11 +198,7 @@ export function CommandGroupLabel({
   )
 }
 
-export function CommandCollection({
-  ...props
-}: React.ComponentProps<typeof AutocompleteCollection>): React.ReactElement {
-  return <AutocompleteCollection data-slot="command-collection" {...props} />
-}
+export const CommandCollection = AutocompleteCollection
 
 export function CommandItem({
   className,
