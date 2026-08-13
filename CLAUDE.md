@@ -7,32 +7,32 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## 意图 → 文件映射
 
-| 任务意图 | 关键文件 | 操作类型 |
-|---|---|---|
-| 新增/修改页面路由 | `app/routes.ts` → `app/routes/<name>.tsx` | 配置 + 页面（跑 typegen 刷新类型） |
-| 新增 coss 组件 | `~/components/ui/`（coss skill） | `npx shadcn@latest add @coss/<component>` 或手写 Base UI 组件 |
-| 添加脚手架共享组件 | `app/components/shared/` | 遵循 `cn()` + Token 约定 |
-| 修改主题配置 | `app/stores/appConfig.ts` + `components/shared/ThemeProvider.tsx` | 单一数据流 |
-| 修改样式/设计 Token | `app/app.css` | CSS 变量（`--background` 等） |
-| 写 SEO / meta | `app/lib/seo.ts` + 各路由 `meta` 导出 | `generateSEOMeta()` |
-| 服务端环境变量 | `app/lib/env.server.ts`（zod 校验，仅服务端） | 加 `serverEnvSchema` 字段 |
-| 写纯逻辑工具 | `app/lib/` | 函数 + 同目录 `*.spec.ts` |
+| 任务意图            | 关键文件                                                          | 操作类型                                                      |
+| ------------------- | ----------------------------------------------------------------- | ------------------------------------------------------------- |
+| 新增/修改页面路由   | `app/routes.ts` → `app/routes/<name>.tsx`                         | 配置 + 页面（跑 typegen 刷新类型）                            |
+| 新增 coss 组件      | `~/components/ui/`（coss skill）                                  | `npx shadcn@latest add @coss/<component>` 或手写 Base UI 组件 |
+| 添加脚手架共享组件  | `app/components/shared/`                                          | 遵循 `cn()` + Token 约定                                      |
+| 修改主题配置        | `app/stores/appConfig.ts` + `components/shared/ThemeProvider.tsx` | 单一数据流                                                    |
+| 修改样式/设计 Token | `app/app.css`                                                     | CSS 变量（`--background` 等）                                 |
+| 写 SEO / meta       | `app/lib/seo.ts` + 各路由 `meta` 导出                             | `generateSEOMeta()`                                           |
+| 服务端环境变量      | `app/lib/env.server.ts`（zod 校验，仅服务端）                     | 加 `serverEnvSchema` 字段                                     |
+| 写纯逻辑工具        | `app/lib/`                                                        | 函数 + 同目录 `*.spec.ts`                                     |
 
 ## 文档索引
 
-| 文档 | 路径 | 何时阅读 |
-|---|---|---|
-| 需求规格 | `docs/requirements/requirements-spec.md` | 新增功能、判断功能边界 |
-| 系统架构 | `docs/planning/architecture.md` | 任何架构级变更前（ADR） |
-| 任务清单 | `docs/planning/backlog.md` | 未决任务 + 排期 |
-| 审查记录 | `docs/reviews/` | 了解已知问题清单 |
-| Git 流程 | `docs/engineering/git-workflow.md` | 每次 commit / PR |
-| 代码规范 | `docs/engineering/code-style.md` | 写代码前 |
-| 发布清单 | `docs/engineering/release-checklist.md` | 里程碑发布前 |
-| 事后分析 | `docs/postmortem/README.md` | 写代码前自查「高频雷区」，防复现 |
-| 开发日志 | `docs/development-log/README.md` | 了解历史决策 |
-| UI 设计规范 | `docs/ui-design/OVERVIEW.md` | 涉及 UI 时（Token、排版、组件索引） |
-| 组件规范 | `docs/ui-design/components/GENERAL.md` | 使用 coss-ui 原子组件时 |
+| 文档        | 路径                                     | 何时阅读                            |
+| ----------- | ---------------------------------------- | ----------------------------------- |
+| 需求规格    | `docs/requirements/requirements-spec.md` | 新增功能、判断功能边界              |
+| 系统架构    | `docs/planning/architecture.md`          | 任何架构级变更前（ADR）             |
+| 任务清单    | `docs/planning/backlog.md`               | 未决任务 + 排期                     |
+| 审查记录    | `docs/reviews/`                          | 了解已知问题清单                    |
+| Git 流程    | `docs/engineering/git-workflow.md`       | 每次 commit / PR                    |
+| 代码规范    | `docs/engineering/code-style.md`         | 写代码前                            |
+| 发布清单    | `docs/engineering/release-checklist.md`  | 里程碑发布前                        |
+| 事后分析    | `docs/postmortem/README.md`              | 写代码前自查「高频雷区」，防复现    |
+| 开发日志    | `docs/development-log/README.md`         | 了解历史决策                        |
+| UI 设计规范 | `docs/ui-design/OVERVIEW.md`             | 涉及 UI 时（Token、排版、组件索引） |
+| 组件规范    | `docs/ui-design/components/GENERAL.md`   | 使用 coss-ui 原子组件时             |
 
 ## 核心约定（写 UI / 写代码前必读）
 
@@ -115,13 +115,13 @@ server/app.ts   ← SSR 入口
 
 ## 常见反模式（禁止）
 
-| 反模式 | 正确做法 | 来源 |
-|---|---|---|
-| `<a href="/...">` 内部导航 | `<Link to="/...">` | 导航约定 |
-| `form.submit()` / `window.location.href` | `useSubmit()` / `navigate()` | 导航约定 |
-| 硬编码颜色（`#fff`） | CSS 变量（`bg-background`） | 设计规范 |
-| 无 loading/error 状态 | 三态覆盖 | 三态约定 |
-| 手写弹层/下拉模拟 | 复用 `~/components/ui/`（Dialog/Menu/Select 等） | 组件优先 |
-| `any` | `unknown` + 收窄 | code-style |
-| 无测试的纯逻辑函数 | 同目录 `*.spec.ts` | code-style §测试 |
-| 新库 API 不验证直接用 | 先写 5 行 spike 实测 | 工程纪律 |
+| 反模式                                   | 正确做法                                         | 来源             |
+| ---------------------------------------- | ------------------------------------------------ | ---------------- |
+| `<a href="/...">` 内部导航               | `<Link to="/...">`                               | 导航约定         |
+| `form.submit()` / `window.location.href` | `useSubmit()` / `navigate()`                     | 导航约定         |
+| 硬编码颜色（`#fff`）                     | CSS 变量（`bg-background`）                      | 设计规范         |
+| 无 loading/error 状态                    | 三态覆盖                                         | 三态约定         |
+| 手写弹层/下拉模拟                        | 复用 `~/components/ui/`（Dialog/Menu/Select 等） | 组件优先         |
+| `any`                                    | `unknown` + 收窄                                 | code-style       |
+| 无测试的纯逻辑函数                       | 同目录 `*.spec.ts`                               | code-style §测试 |
+| 新库 API 不验证直接用                    | 先写 5 行 spike 实测                             | 工程纪律         |

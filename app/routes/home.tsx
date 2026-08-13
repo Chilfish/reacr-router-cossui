@@ -36,7 +36,7 @@ export default function Home() {
     <div className="flex min-h-screen flex-col items-center justify-center bg-background px-4">
       <header className="mb-12 text-center">
         <h1 className="text-3xl font-bold text-foreground tracking-tight">
-          React Router v7
+          React Router v8
         </h1>
         <p className="mt-2 text-muted-foreground">
           coss-ui · Tailwind CSS v4 · Base UI

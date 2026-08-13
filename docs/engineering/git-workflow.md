@@ -12,14 +12,14 @@ main ─────●─────●─────●─────●─
 feat/xxx ──●───●
 ```
 
-| 分支类型 | 命名格式 | 用途 | 生命周期 |
-|---|---|---|---|
-| `main` | — | 稳定分支，始终可部署 | 永久 |
-| `feat/*` | `feat/settings-page` | 功能开发 | 合并后删除 |
-| `fix/*` | `fix/theme-flash` | Bug 修复 | 合并后删除 |
-| `refactor/*` | `refactor/extract-hooks` | 重构 | 合并后删除 |
-| `docs/*` | `docs/adopt-doc-structure` | 文档更新 | 合并后删除 |
-| `test/*` | `test/add-seo-spec` | 测试补充 | 合并后删除 |
+| 分支类型     | 命名格式                   | 用途                 | 生命周期   |
+| ------------ | -------------------------- | -------------------- | ---------- |
+| `main`       | —                          | 稳定分支，始终可部署 | 永久       |
+| `feat/*`     | `feat/settings-page`       | 功能开发             | 合并后删除 |
+| `fix/*`      | `fix/theme-flash`          | Bug 修复             | 合并后删除 |
+| `refactor/*` | `refactor/extract-hooks`   | 重构                 | 合并后删除 |
+| `docs/*`     | `docs/adopt-doc-structure` | 文档更新             | 合并后删除 |
+| `test/*`     | `test/add-seo-spec`        | 测试补充             | 合并后删除 |
 
 ## Commit 规范
 
@@ -37,16 +37,16 @@ feat/xxx ──●───●
 
 ### Type
 
-| Type | 说明 | 示例 |
-|---|---|---|
-| `feat` | 新功能 | `feat(ui): add settings layout` |
-| `fix` | Bug 修复 | `fix(theme): persist system preference` |
-| `refactor` | 重构（不改变行为） | `refactor(hooks): extract useMediaQuery` |
-| `test` | 测试 | `test(seo): add generateSEOMeta coverage` |
-| `docs` | 文档 | `docs: adopt documentation structure` |
-| `style` | 格式化 | `style: apply eslint --fix` |
-| `chore` | 构建/工具 | `chore(build): add vitest config` |
-| `perf` | 性能优化 | `perf(ui): memoize heavy rows` |
+| Type       | 说明               | 示例                                      |
+| ---------- | ------------------ | ----------------------------------------- |
+| `feat`     | 新功能             | `feat(ui): add settings layout`           |
+| `fix`      | Bug 修复           | `fix(theme): persist system preference`   |
+| `refactor` | 重构（不改变行为） | `refactor(hooks): extract useMediaQuery`  |
+| `test`     | 测试               | `test(seo): add generateSEOMeta coverage` |
+| `docs`     | 文档               | `docs: adopt documentation structure`     |
+| `style`    | 格式化             | `style: apply eslint --fix`               |
+| `chore`    | 构建/工具          | `chore(build): add vitest config`         |
+| `perf`     | 性能优化           | `perf(ui): memoize heavy rows`            |
 
 ### Scope
 

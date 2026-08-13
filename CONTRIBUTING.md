@@ -58,6 +58,7 @@ docs/                 # project documentation (see docs/README.md)
 **Scopes**: `ui`, `seo`, `theme`, `routes`, `docs`, `build`, `test`, ...
 
 **Examples**:
+
 ```
 feat(ui): add settings layout
 fix(theme): persist system preference
@@ -65,6 +66,7 @@ docs: adopt documentation structure
 ```
 
 Rules:
+
 - Imperative English description, lowercase, ≤72 chars, no trailing period
 - One commit per logical change (>10 files / >200 lines → split)
 
@@ -89,11 +91,11 @@ See [docs/engineering/code-style.md](./docs/engineering/code-style.md) for the f
 
 ### Navigation (React Router)
 
-| ✅ Use | ❌ Avoid |
-|---|---|
-| `<Link to={...}>` | `<a href={...}>` |
-| `useSubmit()` | `form.submit()` |
-| `navigate(url)` | `window.location.href = url` |
+| ✅ Use            | ❌ Avoid                     |
+| ----------------- | ---------------------------- |
+| `<Link to={...}>` | `<a href={...}>`             |
+| `useSubmit()`     | `form.submit()`              |
+| `navigate(url)`   | `window.location.href = url` |
 
 Exception: native download of external resources may use `<a href>`.
 

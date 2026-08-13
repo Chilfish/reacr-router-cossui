@@ -2,22 +2,22 @@
 
 ## 文档索引
 
-| 文档 | 路径 | 何时阅读 |
-|---|---|---|
-| 需求规格 | `requirements/requirements-spec.md` | 新增功能、判断功能边界 |
-| 用户故事 | `requirements/user-stories.md` | 理解用户需求、设计新特性 |
-| 系统架构 | `planning/architecture.md` | 任何架构级变更前（ADR 记录） |
-| 任务清单 | `planning/backlog.md` | 未决任务 + 排期 |
-| 审查记录 | `reviews/` | 了解已知问题清单 |
-| Git 流程 | `engineering/git-workflow.md` | 每次 commit / PR |
-| 代码规范 | `engineering/code-style.md` | 写代码前 |
-| 发布清单 | `engineering/release-checklist.md` | 里程碑发布前 |
-| 事后分析 | `postmortem/README.md` | 写代码前自查「高频雷区」，防复现 |
-| 开发日志 | `development-log/README.md` | 了解历史决策 |
-| UI 设计规范 | `ui-design/OVERVIEW.md` | 涉及 UI 时（设计 Token、排版、组件索引） |
-| 组件规范 | `ui-design/components/GENERAL.md` | 使用 coss-ui 原子组件时 |
-| SEO 工具 | `ui-design/seo.md` | 新增路由写 `meta` 时 |
-| 共享组件 | `shared-components/README.md` | 使用脚手架自带全局组件时 |
+| 文档        | 路径                                | 何时阅读                                 |
+| ----------- | ----------------------------------- | ---------------------------------------- |
+| 需求规格    | `requirements/requirements-spec.md` | 新增功能、判断功能边界                   |
+| 用户故事    | `requirements/user-stories.md`      | 理解用户需求、设计新特性                 |
+| 系统架构    | `planning/architecture.md`          | 任何架构级变更前（ADR 记录）             |
+| 任务清单    | `planning/backlog.md`               | 未决任务 + 排期                          |
+| 审查记录    | `reviews/`                          | 了解已知问题清单                         |
+| Git 流程    | `engineering/git-workflow.md`       | 每次 commit / PR                         |
+| 代码规范    | `engineering/code-style.md`         | 写代码前                                 |
+| 发布清单    | `engineering/release-checklist.md`  | 里程碑发布前                             |
+| 事后分析    | `postmortem/README.md`              | 写代码前自查「高频雷区」，防复现         |
+| 开发日志    | `development-log/README.md`         | 了解历史决策                             |
+| UI 设计规范 | `ui-design/OVERVIEW.md`             | 涉及 UI 时（设计 Token、排版、组件索引） |
+| 组件规范    | `ui-design/components/GENERAL.md`   | 使用 coss-ui 原子组件时                  |
+| SEO 工具    | `ui-design/seo.md`                  | 新增路由写 `meta` 时                     |
+| 共享组件    | `shared-components/README.md`       | 使用脚手架自带全局组件时                 |
 
 ## 文档关系
 

@@ -6,18 +6,18 @@
 
 ### 命名约定
 
-| 类型 | 风格 | 示例 |
-|---|---|---|
-| 组件 / 类 | PascalCase | `SettingsLayout`、`ThemeProvider` |
-| 组件文件 | kebab-case | `settings-layout.tsx`、`progress-bar.tsx` |
-| hooks | `use` + camelCase | `useHydrated`、`useMediaQuery` |
-| 函数 / 方法 | camelCase | `generateSEOMeta`、`cn` |
-| 常量 | UPPER_SNAKE_CASE | `SITE_CONFIG` |
-| 变量 / 参数 | camelCase | `isDark`、`selectedItems` |
-| 类型 / 接口 | PascalCase | `ButtonProps`、`AppConfigs` |
-| 泛型参数 | 单个大写字母 | `T`、`K`（约束：`T extends ...`） |
-| 包 / 目录 | 全小写 + 连字符 | `app/components/ui/`、`app/lib/` |
-| 路由文件 | kebab-case（React Router v8 约定） | `not-found.tsx`、`api.auth.ts` |
+| 类型        | 风格                               | 示例                                      |
+| ----------- | ---------------------------------- | ----------------------------------------- |
+| 组件 / 类   | PascalCase                         | `SettingsLayout`、`ThemeProvider`         |
+| 组件文件    | kebab-case                         | `settings-layout.tsx`、`progress-bar.tsx` |
+| hooks       | `use` + camelCase                  | `useHydrated`、`useMediaQuery`            |
+| 函数 / 方法 | camelCase                          | `generateSEOMeta`、`cn`                   |
+| 常量        | UPPER_SNAKE_CASE                   | `SITE_CONFIG`                             |
+| 变量 / 参数 | camelCase                          | `isDark`、`selectedItems`                 |
+| 类型 / 接口 | PascalCase                         | `ButtonProps`、`AppConfigs`               |
+| 泛型参数    | 单个大写字母                       | `T`、`K`（约束：`T extends ...`）         |
+| 包 / 目录   | 全小写 + 连字符                    | `app/components/ui/`、`app/lib/`          |
+| 路由文件    | kebab-case（React Router v8 约定） | `not-found.tsx`、`api.auth.ts`            |
 
 ### 文件组织
 
@@ -46,14 +46,14 @@ import type { Route } from './+types/home'
 
 ### 禁止事项
 
-| 禁止 | 替代方案 |
-|---|---|
-| `any`（含隐式） | 明确类型 / `unknown` + 收窄 |
-| 组件内 `window.location.href` / `location.reload()` | `useLocation()` / `useRevalidator()` |
-| 硬编码颜色 | CSS 变量 Token（`bg-background`、`text-muted-foreground` 等） |
-| `window` / `document` 在渲染期间读取 | 仅在 effect / 客户端钩子中读取 |
-| wildcard import | 显式 import |
-| `console.log` 遗留 | 移除或用 lint 拦截 |
+| 禁止                                                | 替代方案                                                      |
+| --------------------------------------------------- | ------------------------------------------------------------- |
+| `any`（含隐式）                                     | 明确类型 / `unknown` + 收窄                                   |
+| 组件内 `window.location.href` / `location.reload()` | `useLocation()` / `useRevalidator()`                          |
+| 硬编码颜色                                          | CSS 变量 Token（`bg-background`、`text-muted-foreground` 等） |
+| `window` / `document` 在渲染期间读取                | 仅在 effect / 客户端钩子中读取                                |
+| wildcard import                                     | 显式 import                                                   |
+| `console.log` 遗留                                  | 移除或用 lint 拦截                                            |
 
 ## Tailwind / UI 约定
 

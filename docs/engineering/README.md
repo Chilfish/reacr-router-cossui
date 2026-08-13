@@ -4,11 +4,11 @@
 
 ## 文档索引
 
-| 文档 | 说明 | 何时阅读 |
-|---|---|---|
-| [git-workflow.md](./git-workflow.md) | 分支模型 / Commit 规范 / 验证门禁 / 发布 / 代码审查 | 每次 commit / PR |
-| [code-style.md](./code-style.md) | TypeScript / React / Tailwind 命名与约定、测试规范 | 写代码前 |
-| [release-checklist.md](./release-checklist.md) | 里程碑发布清单（验证门禁 + 冒烟 + 发布步骤） | 发布前 |
+| 文档                                           | 说明                                                | 何时阅读         |
+| ---------------------------------------------- | --------------------------------------------------- | ---------------- |
+| [git-workflow.md](./git-workflow.md)           | 分支模型 / Commit 规范 / 验证门禁 / 发布 / 代码审查 | 每次 commit / PR |
+| [code-style.md](./code-style.md)               | TypeScript / React / Tailwind 命名与约定、测试规范  | 写代码前         |
+| [release-checklist.md](./release-checklist.md) | 里程碑发布清单（验证门禁 + 冒烟 + 发布步骤）        | 发布前           |
 
 ## 约定
 

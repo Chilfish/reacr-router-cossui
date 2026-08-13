@@ -7,7 +7,7 @@ import type { MetaDescriptor, MetaFunction } from 'react-router'
 export const siteConfig = {
   name: 'React Router App',
   shortName: 'RR App',
-  description: '基于 React Router v7 + coss-ui 的全栈 Web 应用',
+  description: '基于 React Router v8 + coss-ui 的全栈 Web 应用',
   url: 'https://example.com',
   ogImage: '/og-image.png',
   twitterHandle: '@yourhandle',
@@ -43,7 +43,7 @@ export interface SEOMetaInput {
 /**
  * 生成一组标准 SEO meta 标签。
  *
- * 适用于 React Router v7 的 `meta` 导出函数。
+ * 适用于 React Router v8 的 `meta` 导出函数。
  *
  * @example
  * ```ts
@@ -104,7 +104,7 @@ export function generateSEOMeta(input: SEOMetaInput = {}): MetaDescriptor[] {
 }
 
 /**
- * React Router v7 的 meta 合并工具。
+ * React Router v8 的 meta 合并工具。
  * 子路由的 meta 会覆盖父路由中相同 key 的 meta 标签。
  *
  * @example

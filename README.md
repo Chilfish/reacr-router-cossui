@@ -1,10 +1,10 @@
-# React Router v7 + coss-ui 脚手架
+# React Router v8 + coss-ui 脚手架
 
-基于 Vite + React 19 + React Router v7 + Tailwind CSS v4 + Base UI 的开箱即用脚手架。
+基于 Vite + React 19 + React Router v8 + Tailwind CSS v4 + Base UI 的开箱即用脚手架。
 
 ## 技术栈
 
-- **框架**: React 19 + React Router v7 (SSR)
+- **框架**: React 19 + React Router v8 (SSR)
 - **样式**: Tailwind CSS v4 + CSS 变量主题系统
 - **组件库**: coss-ui (基于 Base UI 的无障碍组件，shadcn 风格)
 - **状态管理**: Zustand + localStorage 持久化
@@ -47,7 +47,7 @@ docs/
 - **原生感设计系统** — macOS/iOS 原生美学，完整的浅色/深色主题
 - **无障碍优先** — 基于 Base UI，所有组件内置 WAI-ARIA 支持
 - **移动端适配** — 移动端优先的响应式设计，手势操作支持
-- **SSR 就绪** — React Router v7 SSR + Vercel 部署配置
+- **SSR 就绪** — React Router v8 SSR + Vercel 部署配置
 - **TypeScript 严格模式** — 全量类型覆盖
 
 ## 文档

@@ -6,7 +6,7 @@
   "display": "standalone",
   "background_color": "#f5f9fb",
   "theme_color": "#f5f9fb",
-  "description": "基于 React Router v7 + coss-ui 的全栈 Web 应用",
+  "description": "基于 React Router v8 + coss-ui 的全栈 Web 应用",
   "icons": [
     {
       "src": "/vite.svg",
