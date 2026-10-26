@@ -193,7 +193,12 @@ function SegmentedControlIndicator(): React.ReactElement {
     update()
 
     const resizeObserver = new ResizeObserver(update)
-    let mutationObserver: MutationObserver
+    const mutationObserver = new MutationObserver((records) => {
+      if (records.some(record => record.type === 'childList')) {
+        observeItems()
+      }
+      update()
+    })
     const observeItems = (): void => {
       resizeObserver.disconnect()
       resizeObserver.observe(root)
@@ -205,12 +210,6 @@ function SegmentedControlIndicator(): React.ReactElement {
         })
       }
     }
-    mutationObserver = new MutationObserver((records) => {
-      if (records.some(record => record.type === 'childList')) {
-        observeItems()
-      }
-      update()
-    })
     mutationObserver.observe(root, { childList: true })
     observeItems()
 
