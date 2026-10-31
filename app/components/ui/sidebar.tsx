@@ -97,7 +97,9 @@ export function SidebarProvider({
   const open = openProp ?? _open
   const setOpen = React.useCallback(
     async (value: boolean | ((value: boolean) => boolean)) => {
-      const openState = typeof value === 'function' ? value(open) : value
+      const openState = typeof value === 'function'
+        ? value(open)
+        : value
       if (setOpenProp) {
         setOpenProp(openState)
       }
@@ -118,7 +120,9 @@ export function SidebarProvider({
 
   // Helper to toggle the sidebar.
   const toggleSidebar = React.useCallback(() => {
-    return isMobile ? setOpenMobile(open => !open) : setOpen(open => !open)
+    return isMobile
+      ? setOpenMobile(open => !open)
+      : setOpen(open => !open)
   }, [isMobile, setOpen])
 
   // Adds a keyboard shortcut to toggle the sidebar.
@@ -151,7 +155,14 @@ export function SidebarProvider({
       state,
       toggleSidebar,
     }),
-    [state, open, setOpen, isMobile, openMobile, toggleSidebar],
+    [
+      state,
+      open,
+      setOpen,
+      isMobile,
+      openMobile,
+      toggleSidebar,
+    ],
   )
 
   return (
@@ -234,7 +245,9 @@ export function Sidebar({
   return (
     <div
       className="group peer hidden text-sidebar-foreground md:block"
-      data-collapsible={state === 'collapsed' ? collapsible : ''}
+      data-collapsible={state === 'collapsed'
+        ? collapsible
+        : ''}
       data-side={side}
       data-slot="sidebar"
       data-state={state}

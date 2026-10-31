@@ -16,8 +16,12 @@ export const ComboboxContext: React.Context<{
   multiple: false,
 })
 
-export function Combobox<Value, Multiple extends boolean | undefined = false>(
-  props: ComboboxPrimitive.Root.Props<Value, Multiple>,
+export function Combobox<
+  Value,
+  Multiple extends boolean | undefined = false,
+  Item = Value,
+>(
+  props: ComboboxPrimitive.Root.Props<Value, Multiple, Item>,
 ): React.ReactElement {
   const chipsRef = React.useRef<Element | null>(null)
   return (
@@ -41,12 +45,18 @@ export function ComboboxChipsInput({
     <ComboboxPrimitive.Input
       className={cn(
         'min-w-12 flex-1 text-base text-foreground outline-none sm:text-sm [[data-slot=combobox-chip]+&]:ps-0.5',
-        sizeValue === 'sm' ? 'ps-1.5' : 'ps-2',
+        sizeValue === 'sm'
+          ? 'ps-1.5'
+          : 'ps-2',
         className,
       )}
-      data-size={typeof sizeValue === 'string' ? sizeValue : undefined}
+      data-size={typeof sizeValue === 'string'
+        ? sizeValue
+        : undefined}
       data-slot="combobox-chips-input"
-      size={typeof sizeValue === 'number' ? sizeValue : undefined}
+      size={typeof sizeValue === 'number'
+        ? sizeValue
+        : undefined}
       {...props}
     />
   )
@@ -109,7 +119,9 @@ export function ComboboxInput({
         <ComboboxTrigger
           className={cn(
             'absolute top-1/2 inline-flex size-8 shrink-0 -translate-y-1/2 cursor-pointer items-center justify-center rounded-md border border-transparent opacity-80 outline-none transition-opacity pointer-coarse:after:absolute pointer-coarse:after:min-h-11 pointer-coarse:after:min-w-11 hover:opacity-100 has-[+[data-slot=combobox-clear]]:hidden sm:size-7 [&_svg:not([class*=\'size-\'])]:size-4.5 sm:[&_svg:not([class*=\'size-\'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0',
-            sizeValue === 'sm' ? 'end-0' : 'end-0.5',
+            sizeValue === 'sm'
+              ? 'end-0'
+              : 'end-0.5',
           )}
           {...triggerProps}
         >
@@ -122,7 +134,9 @@ export function ComboboxInput({
         <ComboboxClear
           className={cn(
             'absolute top-1/2 inline-flex size-8 shrink-0 -translate-y-1/2 cursor-pointer items-center justify-center rounded-md border border-transparent opacity-80 outline-none transition-opacity pointer-coarse:after:absolute pointer-coarse:after:min-h-11 pointer-coarse:after:min-w-11 hover:opacity-100 has-[+[data-slot=combobox-clear]]:hidden sm:size-7 [&_svg:not([class*=\'size-\'])]:size-4.5 sm:[&_svg:not([class*=\'size-\'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0',
-            sizeValue === 'sm' ? 'end-0' : 'end-0.5',
+            sizeValue === 'sm'
+              ? 'end-0'
+              : 'end-0.5',
           )}
           {...clearProps}
         >
@@ -208,7 +222,7 @@ export function ComboboxItem({
   return (
     <ComboboxPrimitive.Item
       className={cn(
-        'grid min-h-8 in-data-[side=none]:min-w-[calc(var(--anchor-width)+1.25rem)] cursor-default grid-cols-[1rem_1fr] items-center gap-2 rounded-sm py-1 ps-2 pe-4 text-base outline-none data-disabled:pointer-events-none data-highlighted:bg-accent data-highlighted:text-accent-foreground data-disabled:opacity-64 sm:min-h-7 sm:text-sm [&_svg:not([class*=\'size-\'])]:size-4.5 sm:[&_svg:not([class*=\'size-\'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0',
+        'grid min-h-8 in-data-[side=none]:min-w-[calc(var(--anchor-width)+1.25rem)] cursor-default grid-cols-[1rem_minmax(0,1fr)] items-center gap-2 rounded-sm py-1 ps-2 pe-4 text-base outline-none data-disabled:pointer-events-none data-highlighted:bg-accent data-highlighted:text-accent-foreground data-disabled:opacity-64 sm:min-h-7 sm:text-sm [&_svg:not([class*=\'size-\'])]:size-4.5 sm:[&_svg:not([class*=\'size-\'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0',
         className,
       )}
       data-slot="combobox-item"
@@ -230,7 +244,7 @@ export function ComboboxItem({
           <path d="M5.252 12.7 10.2 18.63 18.748 5.37" />
         </svg>
       </ComboboxPrimitive.ItemIndicator>
-      <div className="col-start-2">{children}</div>
+      <div className="wrap-anywhere col-start-2 min-w-0">{children}</div>
     </ComboboxPrimitive.Item>
   )
 }
@@ -417,7 +431,6 @@ export function ComboboxChipRemove(
 ): React.ReactElement {
   return (
     <ComboboxPrimitive.ChipRemove
-      aria-label="Remove"
       className="h-full shrink-0 cursor-pointer px-1.5 opacity-80 hover:opacity-100 [&_svg:not([class*='size-'])]:size-4 sm:[&_svg:not([class*='size-'])]:size-3.5"
       data-slot="combobox-chip-remove"
       {...props}
@@ -426,6 +439,9 @@ export function ComboboxChipRemove(
     </ComboboxPrimitive.ChipRemove>
   )
 }
+
+export const createComboboxItems: typeof ComboboxPrimitive.createItems
+  = ComboboxPrimitive.createItems
 
 export const useComboboxFilter: typeof ComboboxPrimitive.useFilter
   = ComboboxPrimitive.useFilter

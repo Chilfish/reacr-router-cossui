@@ -97,8 +97,12 @@ function MediaImage({
       loading="lazy"
       className={cn(
         'h-full w-full object-cover transition-opacity duration-300',
-        status === 'loading' ? 'opacity-0' : 'opacity-100',
-        status === 'error' ? 'hidden' : '',
+        status === 'loading'
+          ? 'opacity-0'
+          : 'opacity-100',
+        status === 'error'
+          ? 'hidden'
+          : '',
         className,
       )}
       {...props}
@@ -138,8 +142,12 @@ function MediaVideo({
       data-status={status}
       className={cn(
         'h-full w-full object-cover transition-opacity duration-300',
-        status === 'loading' ? 'opacity-0' : 'opacity-100',
-        status === 'error' ? 'hidden' : '',
+        status === 'loading'
+          ? 'opacity-0'
+          : 'opacity-100',
+        status === 'error'
+          ? 'hidden'
+          : '',
         className,
       )}
       {...props}
