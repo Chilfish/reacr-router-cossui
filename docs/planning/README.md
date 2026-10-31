@@ -22,4 +22,8 @@ planning/（规划与执行 —— 描述「怎么做、做到哪了」）
 
 1. 关键架构决策（ADR）格式：`ADR-NNN`，追加到 `architecture.md`
 2. 阶段计划用 `todo-<kebab-case>.md`，完成或取消后用 `git mv` 移到 `archive/`
-3. 审查问题按编号承接进 backlog 或 todo-*，交付后标记 ✅ 并记录 commit hash
+3. 审查问题按编号承接进 backlog 或 `todo-*`，交付后标记 ✅ 并记录 commit hash
+4. **计划不是现状**：正文只写已经成立的事实；未开工或进行中的任务放 backlog / `todo-*`
+5. 新任务先登记再实现，写清来源（需求 / 审查 / postmortem / 用户反馈）
+6. backlog 状态统一：📋 未开始 / 🚧 进行中 / ✅ 已完成 / ⏸️ 暂缓 / ❌ 已移除
+7. 文档与界面文案按 [writing-style.md](../writing-style.md)

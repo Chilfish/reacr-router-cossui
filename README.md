@@ -38,8 +38,16 @@ app/
   app.css       ← 全局样式 + 设计 Token
   root.tsx      ← 根布局
 docs/
-  ui-design/    ← UI 设计规范文档
-  shared-components/ ← 共享组件文档
+  README.md      ← 文档唯一入口（按任务导航）
+  writing-style.md
+  requirements/  ← 需求与验收标准
+  planning/      ← 架构 ADR / backlog
+  engineering/   ← 代码 / Git / 发布规范
+  ui-design/     ← UI 设计规范与组件索引
+  postmortem/    ← 复盘与高频雷区
+  reviews/       ← 审查记录
+  development-log/
+  archive/
 ```
 
 ## 特性
@@ -52,10 +60,12 @@ docs/
 
 ## 文档
 
-- [UI 设计规范](docs/ui-design/OVERVIEW.md) — 颜色系统、排版、间距、交互规范
-- [通用组件规范](docs/ui-design/components/GENERAL.md) — Button、Input、Card 等原子组件
-- [设置页面模式](docs/ui-design/components/SETTINGS.md) — 设置页面的强制布局规范
-- [共享组件](docs/shared-components/README.md) — 脚手架自带组件的文档
+- [文档索引](docs/README.md) — 唯一入口，按任务导航到需求、架构、工程规范与复盘
+- [写作规范](docs/writing-style.md) — 文档与界面文案的语气、用词、事实性要求
+- [UI 设计规范](docs/ui-design/README.md) — 颜色系统、排版、间距、交互规范
+- [通用组件规范](docs/ui-design/GENERAL.md) — Button、Input、Card 等原子组件
+- [工程规范](docs/engineering/README.md) — 代码规范、Git 流程、发布清单
+- [AGENTS.md](AGENTS.md) — AI Agent 协作指南（意图 → 文件映射、强制规范）
 
 ## 使用说明
 

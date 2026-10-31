@@ -77,14 +77,23 @@ bun run typecheck     # TypeScript 类型检查
 bun run lint          # ESLint（@antfu/eslint-config）
 bun run build         # 生产构建（react-router build）
 bun run test          # Vitest（见 docs/engineering/code-style.md §测试）
+bun run test:coverage # 覆盖率门禁（app/lib ≥ 55%）
 ```
 
 - `lefthook` 在 `postinstall` 自动安装，pre-commit（eslint --fix）+ pre-push（build + test）已配置
 - **禁止 `--no-verify` 跳过钩子**；钩子失败必须修复根因
 
+### 验证诚实
+
+- 测试必须能失败：故意改坏被测行为，相关测试应变红；否则该测试不构成门禁
+- 不提交 `skip` / `only` / 空 `describe` 或零匹配的空跑作为通过
+- 源码扫描只能做结构检查，不能替代行为断言
+- 不接受「既有红灯」作为基线；已知失败先修或移除
+- 报告门禁时写清命令与结果；未执行的检查标注「未验证」
+
 ## 代码审查
 
-1. 创建 PR → 跑通验证门禁
+1. 创建 PR（按 [`.github/PULL_REQUEST_TEMPLATE.md`](../../.github/PULL_REQUEST_TEMPLATE.md) 填写）→ 跑通验证门禁
 2. 至少 1 人 Approve；AI 辅助先进行自动化 Code Review
 3. 审查问题登记进 `docs/planning/backlog.md` 的「审查承接区」
 4. 所有检查通过后 Merge（Create a Merge Commit，保留原子 commit）
@@ -94,12 +103,19 @@ bun run test          # Vitest（见 docs/engineering/code-style.md §测试）
 
 - [ ] 代码逻辑正确，覆盖边界情况
 - [ ] 新功能/纯函数有测试；改动无回归
+- [ ] 测试能失败：故意改坏实现时相关测试会变红
+- [ ] 无 `skip` / `only` / 空跑 / 源码扫描冒充行为断言
 - [ ] 遵循 [code-style.md](./code-style.md)
 - [ ] 无硬编码颜色、无 `any`、无 TODO 遗留
+- [ ] SSR 安全：渲染期不读 `window` / `document` / `localStorage`
 - [ ] 导航使用 `<Link>` / `useSubmit()` / `navigate()`（如适用）
 - [ ] 数据获取路径三态覆盖（loading / empty / error）
+- [ ] 无障碍：焦点可见，图标按钮有可访问名称
 - [ ] UI 变更附带截图（浏览器实测）
-- [ ] 相关文档已更新；新 Bug 模式写 postmortem
+- [ ] 相关文档已更新（`docs/`、索引、`CHANGELOG.md`）
+- [ ] 文档与界面文案符合 [writing-style.md](../writing-style.md)
+- [ ] 路径、命令、路由仍能对上代码；无死链
+- [ ] 新 Bug 模式写 postmortem
 
 ## 发布流程
 
@@ -119,5 +135,8 @@ bun run test          # Vitest（见 docs/engineering/code-style.md §测试）
 ## AI 协作开发
 
 - 优先使用 `gh` CLI 进行 GitHub 全流程管理
+- 文档先行：先更新 `docs/planning/backlog.md` 或方案文档，再写代码
+- 验证先行：先写验收标准与可失败的测试，再实现
 - 新功能先写 spike 验证跨系统边界假设（如新库 API 行为先写 5 行 spike 实测）
-- 新 Bug 模式写 postmortem（见 `docs/postmortem/README.md`），预防项同步到本文件或 `CLAUDE.md`
+- 新 Bug 模式写 postmortem（见 `docs/postmortem/README.md`），预防项同步到本文件或 `AGENTS.md`
+- 文档与界面文案按 [writing-style.md](../writing-style.md) 执行

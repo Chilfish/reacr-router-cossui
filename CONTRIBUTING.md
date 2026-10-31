@@ -2,7 +2,7 @@
 
 Welcome to react-router-cossui. This document covers development setup, code conventions, commit workflow, and quality gates.
 
-> AI 编码助手请阅读根级 [CLAUDE.md](./CLAUDE.md)（导航 + 规范速览）。
+> AI 编码助手请阅读根级 [AGENTS.md](./AGENTS.md)（导航 + 强制规范）。
 
 ## Prerequisites
 
@@ -112,10 +112,15 @@ bun run typecheck
 bun run lint
 bun run build
 bun run test
+bun run test:coverage
 ```
 
 - Never use `--no-verify` to skip hooks; fix the root cause
 - Coverage gate: `app/lib/**` ≥ 55% lines (see `vitest.config.ts`)
+- Do not accept an existing red baseline; fix or remove the failing check
+- Tests must be able to fail: break the behavior on purpose and confirm the test turns red
+- Do not treat source scans (`toContain('literal')`) as behavior assertions
+- No `skip` / `only` / empty runs presented as passing
 
 ## Testing
 
@@ -127,8 +132,19 @@ bun run test
 
 ## Documentation
 
-- New feature/bug patterns → update `docs/` (index at [docs/README.md](./docs/README.md))
+The single entry point is [docs/README.md](./docs/README.md). Read it before a task and update it whenever a document is added, moved, or removed.
+
+- Writing rules: [docs/writing-style.md](./docs/writing-style.md) (tone, wording, UI copy, examples)
+- New feature/requirement change → update `docs/requirements/` and `docs/planning/backlog.md` before implementation
 - Architecture changes → ADR in [docs/planning/architecture.md](./docs/planning/architecture.md)
-- New bug patterns → postmortem (template at [docs/postmortem/TEMPLATE.md](./docs/postmortem/TEMPLATE.md))
+- New bug patterns → postmortem using [docs/postmortem/TEMPLATE.md](./docs/postmortem/TEMPLATE.md)
+- Code review → `docs/reviews/review-YYYY-MM-DD-<topic>.md`; log findings in the backlog
 - Development log → `docs/development-log/YYYY-MM-DD.md`
 - All PRs update `CHANGELOG.md` (Unreleased section)
+
+Documentation rules:
+
+- Docs are facts: paths, commands, routes, and field names must match the current code
+- Do not present plans as current state; unfinished work belongs in the backlog or `todo-*.md`
+- No dead links. Check relative links when removing or renaming files
+- Empty states and error messages follow the same writing rules as docs

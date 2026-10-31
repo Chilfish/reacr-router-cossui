@@ -57,7 +57,7 @@ import type { Route } from './+types/home'
 
 ## Tailwind / UI 约定
 
-- 所有颜色使用 CSS 变量 Token，禁止硬编码 hex（见 [docs/ui-design/OVERVIEW.md](../ui-design/OVERVIEW.md)）
+- 所有颜色使用 CSS 变量 Token，禁止硬编码 hex（见 [docs/ui-design/README.md](../ui-design/README.md)）
 - Dark Mode 是一等公民，所有组件必须兼容
 - 优先复用 `~/components/ui/` 下已有组件（coss-ui）
 - 移动端优先，再用 `sm:` / `md:` / `lg:` 增强
@@ -106,6 +106,22 @@ bun run test:coverage # 覆盖率报告（阈值见 vitest.config.ts）
 ```
 
 覆盖率门禁范围 = 纯逻辑层（`app/lib/`）；UI 组件与路由不计入（文件级覆盖率统计文件而非函数，混入 UI 会失真）。
+
+## 验证与诚实
+
+测试的价值在于能失败。全绿只说明没有断言失败，不说明行为被验证。
+
+- **先红后绿**：新增断言前先确认它在错误实现下会失败；改门禁前故意改坏被测行为，确认会变红。
+- **每条 `it` 至少一条断言**：禁止空 `describe`、全 `skip`、`only` 和条件断言冒充通过。
+- **行为断言优先**：源码扫描（`toContain('字面量')`）只能作结构检查，不能写进验收标准的 Pass 条件。
+- **门禁不接受红灯基线**：已知失败先修或移除，不允许带着已知失败合并。
+- **报告要如实**：写清跑了什么命令、通过还是失败、哪些没跑及原因。不确定写「未验证」。
+
+## 文档与文案
+
+- 用户可见文案遵循 [docs/writing-style.md](../writing-style.md)
+- 空状态说清「是什么、为什么空、下一步」；错误提示给可执行动作
+- 文档中的路径、命令、路由、字段名必须与代码一致；改代码时同步更新文档
 
 ## Lint / 类型检查
 
