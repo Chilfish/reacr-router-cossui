@@ -18,12 +18,16 @@ type BreakpointQuery
     | `${Breakpoint}:max-${Breakpoint}`
 
 function resolveMin(value: Breakpoint | number): string {
-  const px = typeof value === 'number' ? value : BREAKPOINTS[value]
+  const px = typeof value === 'number'
+    ? value
+    : BREAKPOINTS[value]
   return `(min-width: ${px}px)`
 }
 
 function resolveMax(value: Breakpoint | number): string {
-  const px = typeof value === 'number' ? value : BREAKPOINTS[value]
+  const px = typeof value === 'number'
+    ? value
+    : BREAKPOINTS[value]
   return `(max-width: ${px - 1}px)`
 }
 
@@ -60,7 +64,9 @@ function parseQuery(
     }
   }
 
-  return parts.length > 0 ? parts.join(' and ') : query
+  return parts.length > 0
+    ? parts.join(' and ')
+    : query
 }
 
 function getServerSnapshot(): boolean {

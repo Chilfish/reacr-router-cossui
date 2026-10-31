@@ -61,7 +61,9 @@ export function GeneralErrorBoundary() {
   let stack: string | undefined
 
   if (isRouteErrorResponse(error)) {
-    message = error.status === 404 ? '404 Not Found' : 'Error'
+    message = error.status === 404
+      ? '404 Not Found'
+      : 'Error'
     details
       = error.status === 404
         ? 'The requested page could not be found.'

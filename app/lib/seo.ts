@@ -62,8 +62,12 @@ export function generateSEOMeta(input: SEOMetaInput = {}): MetaDescriptor[] {
   } = input
 
   const pageTitle = generateTitle(title)
-  const pageUrl = canonical ? `${siteConfig.url}${canonical}` : siteConfig.url
-  const imageUrl = ogImage.startsWith('http') ? ogImage : `${siteConfig.url}${ogImage}`
+  const pageUrl = canonical
+    ? `${siteConfig.url}${canonical}`
+    : siteConfig.url
+  const imageUrl = ogImage.startsWith('http')
+    ? ogImage
+    : `${siteConfig.url}${ogImage}`
 
   const meta: MetaDescriptor[] = [
     // 基础
@@ -73,7 +77,10 @@ export function generateSEOMeta(input: SEOMetaInput = {}): MetaDescriptor[] {
     // Open Graph
     { property: 'og:title', content: pageTitle },
     { property: 'og:description', content: description },
-    { property: 'og:type', content: canonical ? 'article' : 'website' },
+    {
+      property: 'og:type',
+      content: canonical ? 'article' : 'website',
+    },
     { property: 'og:url', content: pageUrl },
     { property: 'og:image', content: imageUrl },
     { property: 'og:site_name', content: siteConfig.name },
@@ -87,7 +94,10 @@ export function generateSEOMeta(input: SEOMetaInput = {}): MetaDescriptor[] {
     { name: 'twitter:creator', content: siteConfig.twitterHandle },
 
     // 机器人
-    { name: 'robots', content: noIndex ? 'noindex, nofollow' : 'index, follow' },
+    {
+      name: 'robots',
+      content: noIndex ? 'noindex, nofollow' : 'index, follow',
+    },
   ]
 
   // Canonical URL

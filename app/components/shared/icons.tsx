@@ -6,7 +6,9 @@ interface IconProps {
 }
 
 export function ReactRouterIcon({ className, theme }: IconProps) {
-  const color = theme === 'light' ? '#121212' : '#FFFFFF'
+  const color = theme === 'light'
+    ? '#121212'
+    : '#FFFFFF'
 
   return (
     <svg

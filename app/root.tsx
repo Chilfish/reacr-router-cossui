@@ -97,7 +97,9 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
   let stack: string | undefined
 
   if (isRouteErrorResponse(error)) {
-    message = error.status === 404 ? '页面未找到' : '发生错误'
+    message = error.status === 404
+      ? '页面未找到'
+      : '发生错误'
     details = error.status === 404
       ? '您要查找的页面不存在。'
       : error.data?.message || error.statusText
