@@ -61,12 +61,13 @@
 
 ### 4. 路由与构建
 
-| 规则               | 自查点                        | 对策                                              |
-| ------------------ | ----------------------------- | ------------------------------------------------- |
-| 路由改动跑 typegen | 新增路由后是否刷新 `+types/*` | 改 `app/routes.ts` 后跑 `bun run typecheck`       |
-| 别名三处同步       | 新别名是否只改了 `tsconfig`   | `tsconfig` + `vite.config` + `vitest.config` 同步 |
-| 依赖跨主版本       | caret 依赖是否跨 major        | 升级后本地 `bun run build`，必要时锁定版本        |
-| SSR / 客户端边界   | 浏览器 API 是否进入 SSR 路径  | 见第 1 节                                         |
+| 规则                | 自查点                        | 对策                                                                                                    |
+| ------------------- | ----------------------------- | ------------------------------------------------------------------------------------------------------- |
+| 路由改动跑 typegen  | 新增路由后是否刷新 `+types/*` | 改 `app/routes.ts` 后跑 `bun run typecheck`                                                             |
+| 别名三处同步        | 新别名是否只改了 `tsconfig`   | `tsconfig` + `vite.config` + `vitest.config` 同步                                                       |
+| 依赖跨主版本        | caret 依赖是否跨 major        | 升级后本地 `bun run build`，必要时锁定版本                                                              |
+| TypeScript 跨主版本 | 是否把 `typescript` 升到 7.x  | 保持 `6.0.3`，等 typescript-eslint 支持 TS 7.1 API（[dependencies.md](../engineering/dependencies.md)） |
+| SSR / 客户端边界    | 浏览器 API 是否进入 SSR 路径  | 见第 1 节                                                                                               |
 
 ### 5. 验证与流程
 
