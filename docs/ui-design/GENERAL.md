@@ -59,14 +59,16 @@ Base UI 组件已处理好整体结构。额外的 padding 会被坏组件内部
 
 ### 1.2 Size 使用指南
 
-| Size                  | 高度                 | 使用场景                         |
-| --------------------- | -------------------- | -------------------------------- |
-| `xs`                  | `h-7`                | 紧凑表格内、批量操作栏           |
-| `sm`                  | `h-8`                | 工具栏、卡片 footer              |
-| `default`             | `h-9`                | **最常用**，表单提交、对话框确认 |
-| `lg`                  | `h-10`               | 大卡片 CTA                       |
-| `xl`                  | `h-11`               | 登录页、落地页主按钮             |
-| `icon-xs` ~ `icon-xl` | `size-7` ~ `size-11` | 纯图标按钮                       |
+| Size                  | 移动端高度           | `sm` 以上 | 使用场景                         |
+| --------------------- | -------------------- | --------- | -------------------------------- |
+| `xs`                  | `h-7`                | `h-6`     | 紧凑表格内、批量操作栏           |
+| `sm`                  | `h-8`                | `h-7`     | 工具栏、卡片 footer              |
+| `default`             | `h-9`                | `h-8`     | **最常用**，表单提交、对话框确认 |
+| `lg`                  | `h-10`               | `h-9`     | 大卡片 CTA                       |
+| `xl`                  | `h-11`               | `h-10`    | 登录页、落地页主按钮             |
+| `icon-xs` ~ `icon-xl` | `size-7` ~ `size-11` | 小一档    | 纯图标按钮                       |
+
+触屏设备的点击区域由组件的 `pointer-coarse` 样式补到 44×44px，不需要在页面里重复加 padding。
 
 ### 1.3 交互增强
 
@@ -135,11 +137,11 @@ import { SearchIcon } from 'lucide-react'
 
 - 图标使用 `size-4`（16px）
 - 图标颜色：`text-muted-foreground`
-- `InputGroupAddon` 的 `align` 只能是 `"inline-start"` 或 `"inline-end"`
+- `InputGroupAddon` 的 `align` 可选 `"inline-start"`、`"inline-end"`、`"block-start"`、`"block-end"`；头部图标用 `inline-start`，尾部按钮用 `inline-end`
 
-### 2.3 设置页面中的无边框 Input
+### 2.3 设置行中的无边框 Input
 
-在 SettingsItem 中使用时，必须覆盖为无边框样式：
+设置页没有 `SettingsItem` 组件。行由页面用 `FramePanel` 或普通容器拼装，需要行内编辑时再覆盖 Input 样式：
 
 ```tsx
 <Input
@@ -176,8 +178,9 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter }
 
 ### 3.2 禁止事项
 
-- **禁止在 SettingsGroup 内嵌套 Card** — 设置列表使用 SettingsGroup
-- **禁止在 CardContent 内再嵌套独立 Card** — 如需分区，使用 `Frame` 或多 Card 并列
+- **禁止在 `Frame` / `FramePanel` 内再嵌套 Card** — 设置分组直接使用 `FramePanel`，不再套一层 Card
+- **禁止在 `CardPanel`（别名 `CardContent`）内再嵌套独立 Card** — 如需分区，使用 `Frame`、分隔线或多 Card 并列
+- **同质记录不使用 Card** — 列表或表格更容易扫读与比较
 
 ---
 
@@ -188,41 +191,51 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter }
 导入路径：`~/components/ui/dialog`
 
 ```tsx
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '~/components/ui/dialog'
+import { Dialog, DialogDescription, DialogHeader, DialogPopup, DialogTitle } from '~/components/ui/dialog'
 
 <Dialog open={open} onOpenChange={setOpen}>
-  <DialogContent>
+  <DialogPopup>
     <DialogHeader>
-      <DialogTitle>确认删除</DialogTitle>
-      <DialogDescription>此操作不可撤销。</DialogDescription>
+      <DialogTitle>编辑名称</DialogTitle>
+      <DialogDescription>名称会显示在列表与搜索结果中。</DialogDescription>
     </DialogHeader>
     {/* 内容 */}
-  </DialogContent>
+  </DialogPopup>
 </Dialog>
 ```
 
 **特性：**
 
-- 默认已含 `backdrop-blur-sm` 背景模糊
-- 默认已含进出动画
-- 移动端可使用 `bottomStickOnMobile` 属性使其固定在底部
+- `DialogPopup` 也以 `DialogContent` 导出，两种名字等价
+- 默认已含 `backdrop-blur-sm` 背景模糊与进出动画
+- `bottomStickOnMobile` 默认为 `true`，移动端贴底；需要居中时显式传 `false`
+- 删除、取消任务等不可逆操作使用 `AlertDialog`，不要用普通 Dialog
 
-### 4.2 Drawer / Sheet（移动端底部面板）
+### 4.2 Drawer / Sheet（侧边或底部面板）
 
 导入路径：`~/components/ui/drawer` 或 `~/components/ui/sheet`
 
-- **移动端优先：** 在 `<768px` 下自动展示为底部抽屉，支持拖拽关闭
-- **Grabber：** 顶部有灰色短横线指示可拖拽
+- **`Drawer`** 支持 `position="bottom" | "top" | "left" | "right"`，默认 `bottom`，支持手势关闭；`showBar` 显示顶部拖拽条。
+- **`Sheet`** 支持 `side="right" | "left" | "top" | "bottom"`，默认从右侧进入；需要底部面板时显式传 `side="bottom"`。
+- 两者都不会按视口宽度自动切换形态。窄屏用底部、宽屏用侧边时，由页面根据 `useMediaQuery` 选择，或统一使用 `Dialog` 的 `bottomStickOnMobile`。
+- `Sheet` 默认显示关闭按钮；`Drawer` 的 `showCloseButton` 默认为 `false`，需要按钮时显式传 `true`，或由页面提供关闭动作。
 
 ### 4.3 Toast（通知）
 
 导入路径：`~/components/ui/toast`
 
-应用已在 `root.tsx` 中全局挂载 `<ToastProvider>` 和 `<AnchoredToastProvider>`，组件内直接使用 hook 即可。
+应用已在 `root.tsx` 中全局挂载 `<ToastProvider>` 和 `<AnchoredToastProvider>`。组件内使用 `toastManager.add()`，锚定元素使用 `anchoredToastManager`。
 
-- **桌面端：** 默认右下角
-- **移动端：** 顶部居中（避免遮挡键盘）
-- **样式预设：** `bg-background border shadow-lg rounded-xl`
+```tsx
+import { toastManager } from '~/components/ui/toast'
+
+toastManager.add({ title: '已保存', type: 'success' })
+```
+
+- **位置：** `ToastProvider` 默认 `bottom-right`；需要其它位置时在 `root.tsx` 传 `position`，不要在每个页面单独配置。
+- **类型：** `success` / `error` / `info` / `warning` / `loading`，图标与颜色由组件处理。
+- **样式：** 组件内置 `bg-popover`、边框、阴影与圆角，不要覆盖成一次性颜色。
+- 持续可见的状态用 `Alert` 或 `Badge`，不要用 Toast 代替状态展示。
 
 ---
 
@@ -232,7 +245,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } f
 
 - **库：** `lucide-react`
 - **默认大小：** `size-4`（16px）
-- **按钮内图标：** `size-4`（sm）、`size-5`（default）、自动适配
+- **按钮内图标：** 由 `Button` 按 `size` 适配；默认移动端 `size-4.5`、`sm` 以上 `size-4`，`xl` / `icon-xl` 使用 `size-5`
 - **极小图标：** `size-3.5`（14px）元数据/辅助文字
 - **颜色：**
   - 默认跟随文字（`currentColor`，无需额外设置）
@@ -265,25 +278,21 @@ import { cn } from '~/lib/utils'
 )} />
 ```
 
-### 6.2 useMediaQuery — 响应式检测
+### 6.2 useMediaQuery / useIsMobile — 响应式检测
+
+统一从 `~/hooks/use-media-query` 导入。`app/hooks/use-mobile.ts` 是另一份未使用的实现，不要新增引用。
 
 ```tsx
-import { useMediaQuery } from '~/hooks/use-media-query'
+import { useIsMobile, useMediaQuery } from '~/hooks/use-media-query'
 
-const isMobile = useMediaQuery('(max-width: 767px)')
-// 或使用命名断点
-const isDesktop = useMediaQuery('lg')
-```
-
-### 6.3 useMediaQuery / useIsMobile — 响应式检测
-
-```tsx
-import { useMediaQuery, useIsMobile } from '~/hooks/use-media-query'
-
-const isMobile = useIsMobile()            // < 800px
-const isDesktop = useMediaQuery('lg')     // >= 1024px
+const isMobile = useIsMobile()                        // < 800px
+const isDesktop = useMediaQuery('lg')                 // >= 1024px
 const isTouch = useMediaQuery({ pointer: 'coarse' })  // 触摸设备
 ```
+
+- 断点名：`sm` 640、`md` 800、`lg` 1024、`xl` 1280、`2xl` 1536。
+- 查询也可以传 CSS 媒体查询字符串。
+- 服务端快照固定为 `false`，首屏不要依赖它渲染唯一内容。
 
 ---
 
@@ -294,7 +303,7 @@ const isTouch = useMediaQuery({ pointer: 'coarse' })  // 触摸设备
 | `<button className="bg-blue-500 text-white rounded px-4 py-2">` | `<Button>`                                                             |
 | `<div className="absolute left-2 top-1/2"><Icon /></div>`       | `<InputGroup><InputGroupAddon><Icon /></InputGroupAddon></InputGroup>` |
 | `<div className="bg-white rounded-xl shadow p-6">`              | `<Card><CardContent>...</CardContent></Card>`                          |
-| `className="border-b border-gray-200"` 在设置列表               | 使用 `SettingsItem`，自动处理分割线                                    |
+| `className="border-b border-gray-200"` 在设置列表               | `Frame` + `FramePanel` 分组，行间用 `Separator` 或 `border-border`     |
 | `text-black dark:text-white`                                    | `text-foreground`                                                      |
 | `bg-white dark:bg-gray-900`                                     | `bg-background` 或 `bg-card`                                           |
 | `<hr />` 分割两个区域                                           | `<Separator />` 来自 `~/components/ui/separator`                       |

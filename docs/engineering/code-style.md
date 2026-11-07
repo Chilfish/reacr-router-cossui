@@ -6,18 +6,18 @@
 
 ### 命名约定
 
-| 类型        | 风格                               | 示例                                      |
-| ----------- | ---------------------------------- | ----------------------------------------- |
-| 组件 / 类   | PascalCase                         | `SettingsLayout`、`ThemeProvider`         |
-| 组件文件    | kebab-case                         | `settings-layout.tsx`、`progress-bar.tsx` |
-| hooks       | `use` + camelCase                  | `useHydrated`、`useMediaQuery`            |
-| 函数 / 方法 | camelCase                          | `generateSEOMeta`、`cn`                   |
-| 常量        | UPPER_SNAKE_CASE                   | `SITE_CONFIG`                             |
-| 变量 / 参数 | camelCase                          | `isDark`、`selectedItems`                 |
-| 类型 / 接口 | PascalCase                         | `ButtonProps`、`AppConfigs`               |
-| 泛型参数    | 单个大写字母                       | `T`、`K`（约束：`T extends ...`）         |
-| 包 / 目录   | 全小写 + 连字符                    | `app/components/ui/`、`app/lib/`          |
-| 路由文件    | kebab-case（React Router v8 约定） | `not-found.tsx`、`api.auth.ts`            |
+| 类型        | 风格                               | 示例                                     |
+| ----------- | ---------------------------------- | ---------------------------------------- |
+| 组件 / 类   | PascalCase                         | `ProgressBar`、`ThemeProvider`           |
+| 组件文件    | kebab-case                         | `progress-bar.tsx`、`error-boundary.tsx` |
+| hooks       | `use` + camelCase                  | `useHydrated`、`useMediaQuery`           |
+| 函数 / 方法 | camelCase                          | `generateSEOMeta`、`cn`                  |
+| 常量        | UPPER_SNAKE_CASE                   | `SITE_CONFIG`                            |
+| 变量 / 参数 | camelCase                          | `isDark`、`selectedItems`                |
+| 类型 / 接口 | PascalCase                         | `ButtonProps`、`AppConfigs`              |
+| 泛型参数    | 单个大写字母                       | `T`、`K`（约束：`T extends ...`）        |
+| 包 / 目录   | 全小写 + 连字符                    | `app/components/ui/`、`app/lib/`         |
+| 路由文件    | kebab-case（React Router v8 约定） | `not-found.tsx`、`api.auth.ts`           |
 
 ### 文件组织
 
@@ -57,7 +57,7 @@ import type { Route } from './+types/home'
 
 ## Tailwind / UI 约定
 
-- 所有颜色使用 CSS 变量 Token，禁止硬编码 hex（见 [docs/ui-design/README.md](../ui-design/README.md)）
+- 所有颜色使用 CSS 变量 Token，禁止硬编码 hex（见 [docs/ui-design/visual.md](../ui-design/visual.md)）
 - Dark Mode 是一等公民，所有组件必须兼容
 - 优先复用 `~/components/ui/` 下已有组件（coss-ui）
 - 移动端优先，再用 `sm:` / `md:` / `lg:` 增强

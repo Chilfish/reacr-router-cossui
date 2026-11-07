@@ -7,6 +7,7 @@ import {
 
 export default [
   index('routes/home.tsx'),
+  route('example', 'routes/example.tsx'),
 
   // Not found
   route('*', 'routes/not-found.tsx'),

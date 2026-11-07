@@ -43,7 +43,7 @@ docs/
   requirements/  ← 需求与验收标准
   planning/      ← 架构 ADR / backlog
   engineering/   ← 代码 / Git / 发布规范
-  ui-design/     ← UI 设计规范与组件索引
+  ui-design/     ← UI 设计系统、页面骨架、三态与组件规范
   postmortem/    ← 复盘与高频雷区
   reviews/       ← 审查记录
   development-log/
@@ -62,7 +62,12 @@ docs/
 
 - [文档索引](docs/README.md) — 唯一入口，按任务导航到需求、架构、工程规范与复盘
 - [写作规范](docs/writing-style.md) — 文档与界面文案的语气、用词、事实性要求
-- [UI 设计规范](docs/ui-design/README.md) — 颜色系统、排版、间距、交互规范
+- [UI 设计系统](docs/ui-design/README.md) — 设计立场、文档地图与自检清单
+- [视觉规范](docs/ui-design/visual.md) — 颜色、字体、间距、圆角、动效与组件映射
+- [页面与组件结构](docs/ui-design/patterns.md) — 信息预算、页面骨架、工具栏、三态与新增页面清单
+- [三态与反馈](docs/ui-design/feedback.md) — 空、加载、错误、浮层与 Toast
+- [交互与状态](docs/ui-design/interaction.md) — 键盘、导航、URL、持久化与 SSR
+- [设计参考综述](docs/ui-design/research.md) — 规范来源、正反例与评审方法
 - [通用组件规范](docs/ui-design/GENERAL.md) — Button、Input、Card 等原子组件
 - [工程规范](docs/engineering/README.md) — 代码规范、Git 流程、发布清单
 - [AGENTS.md](AGENTS.md) — AI Agent 协作指南（意图 → 文件映射、强制规范）

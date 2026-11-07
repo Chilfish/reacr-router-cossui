@@ -18,22 +18,27 @@
 
 ## 文档索引
 
-| 文档        | 路径                                     | 何时阅读                            |
-| ----------- | ---------------------------------------- | ----------------------------------- |
-| 文档索引    | `docs/README.md`                         | 任何任务开始前（唯一入口）          |
-| 写作规范    | `docs/writing-style.md`                  | 写文档、文案、PR / issue 前         |
-| 需求规格    | `docs/requirements/requirements-spec.md` | 新增功能、判断功能边界              |
-| 用户故事    | `docs/requirements/user-stories.md`      | 理解用户需求、设计新特性            |
-| 系统架构    | `docs/planning/architecture.md`          | 任何架构级变更前（ADR）             |
-| 任务清单    | `docs/planning/backlog.md`               | 未决任务 + 排期                     |
-| 审查记录    | `docs/reviews/`                          | 了解已知问题清单                    |
-| Git 流程    | `docs/engineering/git-workflow.md`       | 每次 commit / PR                    |
-| 代码规范    | `docs/engineering/code-style.md`         | 写代码前                            |
-| 发布清单    | `docs/engineering/release-checklist.md`  | 里程碑发布前                        |
-| 事后分析    | `docs/postmortem/README.md`              | 写代码前自查「高频雷区」，防复现    |
-| 开发日志    | `docs/development-log/README.md`         | 了解历史决策                        |
-| UI 设计规范 | `docs/ui-design/README.md`               | 涉及 UI 时（Token、排版、组件索引） |
-| 组件规范    | `docs/ui-design/GENERAL.md`              | 使用 coss-ui 原子组件时             |
+| 文档        | 路径                                     | 何时阅读                         |
+| ----------- | ---------------------------------------- | -------------------------------- |
+| 文档索引    | `docs/README.md`                         | 任何任务开始前（唯一入口）       |
+| 写作规范    | `docs/writing-style.md`                  | 写文档、文案、PR / issue 前      |
+| 需求规格    | `docs/requirements/requirements-spec.md` | 新增功能、判断功能边界           |
+| 用户故事    | `docs/requirements/user-stories.md`      | 理解用户需求、设计新特性         |
+| 系统架构    | `docs/planning/architecture.md`          | 任何架构级变更前（ADR）          |
+| 任务清单    | `docs/planning/backlog.md`               | 未决任务 + 排期                  |
+| 审查记录    | `docs/reviews/`                          | 了解已知问题清单                 |
+| Git 流程    | `docs/engineering/git-workflow.md`       | 每次 commit / PR                 |
+| 代码规范    | `docs/engineering/code-style.md`         | 写代码前                         |
+| 发布清单    | `docs/engineering/release-checklist.md`  | 里程碑发布前                     |
+| 事后分析    | `docs/postmortem/README.md`              | 写代码前自查「高频雷区」，防复现 |
+| 开发日志    | `docs/development-log/README.md`         | 了解历史决策                     |
+| UI 设计系统 | `docs/ui-design/README.md`               | 涉及 UI 时（文档地图、自检清单） |
+| 视觉规范    | `docs/ui-design/visual.md`               | 定 Token、写样式、评审视觉       |
+| 页面结构    | `docs/ui-design/patterns.md`             | 新增页面、拆组件、信息预算       |
+| 三态与反馈  | `docs/ui-design/feedback.md`             | 接数据、写空/加载/错误/浮层      |
+| 交互与状态  | `docs/ui-design/interaction.md`          | 键盘、导航、URL、持久化、SSR     |
+| 设计参考    | `docs/ui-design/research.md`             | 评审规则、引入新做法             |
+| 组件规范    | `docs/ui-design/GENERAL.md`              | 使用 coss-ui 原子组件时          |
 
 ## 🔴 强制规范（必须遵循）
 
@@ -47,7 +52,7 @@
 
 ## 核心约定（写 UI / 写代码前必读）
 
-### 🎨 设计系统铁律（源自 `docs/ui-design/README.md`）
+### 🎨 设计系统铁律（源自 `docs/ui-design/visual.md`）
 
 ```
 ✅ bg-background, text-muted-foreground, border-input
@@ -60,7 +65,7 @@
 - **移动端优先**：先写移动端，再用 `sm:`/`md:`/`lg:` 增强；交互过渡 150–350ms
 - **类名合并**：用 `cn()`（`~/lib/utils`）
 
-### 🚨 三态覆盖
+### 🚨 三态覆盖（详见 `docs/ui-design/feedback.md`）
 
 所有数据获取路径必须覆盖：
 
