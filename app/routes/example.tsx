@@ -1,6 +1,6 @@
 import type { Route } from './+types/example'
 import { useState } from 'react'
-import { Link } from 'react-router'
+import { ExampleNav } from '~/components/shared/example-nav'
 import { TimeInput } from '~/components/shared/time-input'
 import {
   Card,
@@ -27,12 +27,7 @@ export default function Example() {
     <div className="min-h-dvh bg-background px-4 py-10">
       <div className="mx-auto flex w-full max-w-3xl flex-col gap-8">
         <header className="flex flex-col gap-2">
-          <Link
-            className="text-muted-foreground text-sm hover:text-foreground"
-            to="/"
-          >
-            ← 返回首页
-          </Link>
+          <ExampleNav />
           <h1 className="font-heading font-semibold text-2xl text-foreground">
             时间输入
           </h1>

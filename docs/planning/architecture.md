@@ -18,9 +18,9 @@
 app/
   components/
     ui/         ← coss-ui 组件库（Base UI + cva + cn()）
-    shared/     ← 脚手架自带全局组件（ThemeProvider、ProgressBar、TimeInput、Spinner 等）
-  hooks/        ← 通用 hooks（useHydrated、useMediaQuery、useNonce 等）
-  lib/          ← 纯逻辑层（cn、env.server、seo、time）
+    shared/     ← 脚手架自带全局组件（ThemeProvider、ProgressBar、TimeInput、FileDropzone、Spinner 等）
+  hooks/        ← 通用 hooks（useHydrated、useMediaQuery、useObjectUrl、useFileThumbnails 等）
+  lib/          ← 纯逻辑层（cn、env.server、seo、time、files）
   routes/       ← 路由页面（在 app/routes.ts 集中声明）
   stores/       ← Zustand stores（appConfig 主题）
   app.css       ← 全局样式 + 设计 Token

@@ -1,4 +1,5 @@
 import type { Route } from './+types/home'
+import { Link } from 'react-router'
 import {
   AlertDialog,
   AlertDialogClose,
@@ -34,7 +35,7 @@ export default function Home() {
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-background px-4">
-      <header className="mb-12 text-center">
+      <header className="mb-6 text-center">
         <h1 className="text-3xl font-bold text-foreground tracking-tight">
           React Router v8
         </h1>
@@ -42,6 +43,30 @@ export default function Home() {
           coss-ui · Tailwind CSS v4 · Base UI
         </p>
       </header>
+
+      <nav
+        aria-label="示例导航"
+        className="mb-8 flex flex-wrap items-center justify-center gap-4 text-sm"
+      >
+        <Link
+          className="text-muted-foreground hover:text-foreground"
+          to="/examples"
+        >
+          组件示例
+        </Link>
+        <Link
+          className="text-muted-foreground hover:text-foreground"
+          to="/example"
+        >
+          时间输入
+        </Link>
+        <Link
+          className="text-muted-foreground hover:text-foreground"
+          to="/example/files"
+        >
+          文件选择器
+        </Link>
+      </nav>
 
       <div className="flex flex-wrap items-center justify-center gap-3">
         <Button variant="default">Primary</Button>

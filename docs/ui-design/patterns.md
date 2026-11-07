@@ -152,6 +152,7 @@
 | 移动端底部面板     | `Drawer`（`position="bottom"`）           |
 | 搜索输入           | `InputGroup` + `InputGroupInput`          |
 | 时间输入           | `TimeInput`（`~/components/shared/`）     |
+| 文件选择与拖拽     | `FileDropzone`（`~/components/shared/`）  |
 | 短标签与状态       | `Badge`                                   |
 | 快捷键提示         | `Kbd` / `Tooltip`                         |
 | 加载               | `Skeleton` / `Spinner` / `Progress`       |

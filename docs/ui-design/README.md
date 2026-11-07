@@ -5,15 +5,16 @@
 
 ## 1. 文档地图
 
-| 文档                               | 内容                                                       | 何时读                       |
-| ---------------------------------- | ---------------------------------------------------------- | ---------------------------- |
-| [visual.md](./visual.md)           | 颜色、字体、间距、圆角、动效、组件映射                     | 写样式、定 Token、评审视觉   |
-| [GENERAL.md](./GENERAL.md)         | Button、Input、Card、Dialog 等原子组件的用法与反例         | 使用 `~/components/ui/` 组件 |
-| [time-input.md](./time-input.md)   | TimeInput 的解析规则、滚轮、Props 与可访问性               | 需要填写时刻、改造时间输入   |
-| [patterns.md](./patterns.md)       | 信息预算、页面骨架、页面类型、工具栏、列表、三态、检查清单 | 新增页面、拆组件             |
-| [feedback.md](./feedback.md)       | 空、加载、错误、浮层、Toast 与提示文案                     | 接数据、写状态与提示         |
-| [interaction.md](./interaction.md) | 键盘、导航、URL 状态、持久化、SSR 与触摸                   | 写交互与状态                 |
-| [research.md](./research.md)       | 规范与研究来源、正反例、采纳取舍                           | 评审规则或引入新做法         |
+| 文档                                   | 内容                                                       | 何时读                       |
+| -------------------------------------- | ---------------------------------------------------------- | ---------------------------- |
+| [visual.md](./visual.md)               | 颜色、字体、间距、圆角、动效、组件映射                     | 写样式、定 Token、评审视觉   |
+| [GENERAL.md](./GENERAL.md)             | Button、Input、Card、Dialog 等原子组件的用法与反例         | 使用 `~/components/ui/` 组件 |
+| [time-input.md](./time-input.md)       | TimeInput 的解析规则、滚轮、Props 与可访问性               | 需要填写时刻、改造时间输入   |
+| [file-dropzone.md](./file-dropzone.md) | FileDropzone 的选择、校验、缩略图与性能约定                | 需要选择文件、图片预览       |
+| [patterns.md](./patterns.md)           | 信息预算、页面骨架、页面类型、工具栏、列表、三态、检查清单 | 新增页面、拆组件             |
+| [feedback.md](./feedback.md)           | 空、加载、错误、浮层、Toast 与提示文案                     | 接数据、写状态与提示         |
+| [interaction.md](./interaction.md)     | 键盘、导航、URL 状态、持久化、SSR 与触摸                   | 写交互与状态                 |
+| [research.md](./research.md)           | 规范与研究来源、正反例、采纳取舍                           | 评审规则或引入新做法         |
 
 本目录只放可复用的规范，不记录具体页面的实现进度、截图或按日期的改造日志。页面进度写进
 [docs/planning/backlog.md](../planning/backlog.md)，实现记录写进
