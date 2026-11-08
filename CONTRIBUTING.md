@@ -91,7 +91,7 @@ See [docs/engineering/code-style.md](./docs/engineering/code-style.md) for the f
 
 ### Navigation (React Router)
 
-| ✅ Use            | ❌ Avoid                     |
+| Use               | Avoid                        |
 | ----------------- | ---------------------------- |
 | `<Link to={...}>` | `<a href={...}>`             |
 | `useSubmit()`     | `form.submit()`              |

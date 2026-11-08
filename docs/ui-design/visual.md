@@ -202,6 +202,8 @@
 | 手写 `<div>` 模拟按钮、输入框 | 使用 `Button`、`Input`、`InputGroup`          |
 | 用颜色单独区分成功与失败      | 颜色 + 文字或图标                             |
 
+同一事实在多处重复、区块底部的口径脚注、`详情 →` 这类自证式导航，属于页面层的冗余，规则与删除清单见 [information-density.md](./information-density.md)。
+
 ## 8. 参考
 
 - [Apple Human Interface Guidelines](https://developer.apple.com/design/human-interface-guidelines/)

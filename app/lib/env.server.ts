@@ -16,7 +16,7 @@ export const env = (() => {
 
   if (parsed.success === false) {
     console.error(
-      '❌ Invalid environment variables:',
+      'Invalid environment variables:',
       z.treeifyError(parsed.error),
     )
     throw new Error('Invalid environment variables')
@@ -27,7 +27,7 @@ export const env = (() => {
 
   // Only log in development for better production security
   if (validatedData.ENVIRONMENT === 'development') {
-    console.log(`✅ Environment: ${validatedData.ENVIRONMENT}`)
+    console.log(`Environment: ${validatedData.ENVIRONMENT}`)
   }
 
   return validatedData

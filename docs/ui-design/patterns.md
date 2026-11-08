@@ -14,6 +14,8 @@
 - 同一信息只出现一次；重复说明删掉。
 - 检查方法：删掉任意区块后，页面是否仍回答核心问题。答案为是时，删除这个区块。
 
+生成完成后再按 [information-density.md](./information-density.md) 的删除清单过一遍：重复表述、口径脚注、自证式导航、因字段存在而存在的区块，以及只加不减的改动。
+
 ## 1. 页面骨架
 
 页面占满可用高度，工具栏固定，内容区自己滚动：
@@ -82,7 +84,7 @@
 - 行高 56–80，左右内边距 16。
 - 行内按「主信息、次要信息、右侧动作」排列。
 - hover 使用背景或透明度变化，尺寸保持稳定；选中使用 2px 主色描边或 `bg-accent`。
-- 超出宽度的文本用 `truncate`；数字列右对齐。
+- 元数据、计数、标签等短文本可以 `truncate`；标题与正文换行，不截断。数字列右对齐。
 
 **卡片**
 
@@ -91,6 +93,40 @@
 - 卡片圆角由组件内置（`rounded-2xl`），不额外覆盖。
 - 卡片内不再嵌套卡片；需要分区时用 `Frame` / `FramePanel` 或分隔线。
 - 设置页用 `Frame` + `FramePanel` 组织分组，不为每一行套 Card。
+
+**记录型表格（窄屏换形态）**
+
+记录列表（日程、订单、成员、日志）在窄屏不要压缩表格：固定列宽会把标题列挤成一字一列。统一形态是「桌面表格 + 移动端堆叠列表」，分界点 `md`（768px）。
+
+```tsx
+<div className="hidden md:block">
+  <Table>
+    {/* 表头 + 行 */}
+  </Table>
+</div>
+
+<ul className="md:hidden">
+  {rows.map(row => (
+    <li key={row.id} className="flex flex-col gap-1.5 border-t border-border px-4 py-3 first:border-t-0">
+      <div className="flex items-start justify-between gap-3">
+        <span className="text-xs tabular-nums text-muted-foreground">{row.time}</span>
+        <span className="text-sm font-medium">{row.title}</span>
+        <Badge size="sm" variant="outline">{row.status}</Badge>
+      </div>
+      <p className="text-xs leading-relaxed text-muted-foreground">{row.detail}</p>
+    </li>
+  ))}
+</ul>
+```
+
+| 规则                                                            | 原因                     |
+| --------------------------------------------------------------- | ------------------------ |
+| 标题列不设固定宽度、不用 `truncate`                             | 窄屏会把标题压成一字一列 |
+| `<md` 不渲染表格，改堆叠列表                                    | 横向滚动与压缩列都难读   |
+| 列表行用一条分隔线分组，不套卡片                                | 保持密度，避免卡片堆     |
+| 状态、关联、操作抽成小组件，两种形态复用                        | 不写两份判断             |
+| 真正的宽数据表（矩阵、热力图）才用 `overflow-x-auto` 容器内滚动 | 记录列表一律换形态       |
+| 用设备模拟（宽度 + 触摸）验证 320 / 390px                       | 只缩桌面视口看不出问题   |
 
 ## 5. 状态三件套
 
@@ -133,6 +169,8 @@
 - [ ] 内部导航用 `<Link>`；提交用 `useSubmit()`；跳转用 `navigate()`。
 - [ ] 图标按钮有 `aria-label`；键盘路径可用。
 - [ ] 间距、圆角、字号与 [visual.md](./visual.md) 一致。
+- [ ] 按 [information-density.md](./information-density.md) 的删除清单检查：无重复表述、口径脚注、自证式导航。
+- [ ] 记录型表格在 `md` 以下换成堆叠列表，320 / 390px 无横向溢出。
 - [ ] 纯逻辑有同目录 `*.spec.ts`，测试能失败。
 - [ ] `bun run typecheck`、`bun run lint`、`bun run test`、`bun run build` 通过。
 

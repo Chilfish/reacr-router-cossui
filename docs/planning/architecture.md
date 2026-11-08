@@ -32,6 +32,23 @@ server/app.ts   ← SSR 入口
 
 （脚手架阶段为空。业务落地后在此描述「Loader/Action → 序列化 → UI」数据流，以及 `~/*` 路径别名约定。）
 
+## 意图 → 文件
+
+改代码前先定位。根 [AGENTS.md](../../AGENTS.md) 只保留高频入口，完整映射在这里维护。
+
+| 任务意图            | 关键文件                                                              | 操作类型                                                      |
+| ------------------- | --------------------------------------------------------------------- | ------------------------------------------------------------- |
+| 新增/修改页面路由   | `app/routes.ts` → `app/routes/<name>.tsx`                             | 配置 + 页面（跑 typegen 刷新类型）                            |
+| 新增 coss 组件      | `~/components/ui/`（coss skill）                                      | `npx shadcn@latest add @coss/<component>` 或手写 Base UI 组件 |
+| 添加脚手架共享组件  | `app/components/shared/`                                              | 遵循 `cn()` + Token 约定                                      |
+| 修改主题配置        | `app/stores/appConfig.ts` + `app/components/shared/ThemeProvider.tsx` | 单一数据流                                                    |
+| 修改样式/设计 Token | `app/app.css`                                                         | CSS 变量（`--background` 等）                                 |
+| 写 SEO / meta       | `app/lib/seo.ts` + 各路由 `meta` 导出                                 | `generateSEOMeta()`                                           |
+| 服务端环境变量      | `app/lib/env.server.ts`（zod 校验，仅服务端）                         | 加 `serverEnvSchema` 字段                                     |
+| 写纯逻辑工具        | `app/lib/`                                                            | 函数 + 同目录 `*.spec.ts`                                     |
+
+编写或调试 coss 组件前先调用 coss skill，按其 references 走（component-registry / primitives / rules）。实现模式 = Base UI `useRender` + `mergeProps` + cva 变体。
+
 ## 关键设计决策
 
 ### ADR-001：设计 Token 与暗色模式
@@ -63,6 +80,12 @@ server/app.ts   ← SSR 入口
 - **决策**：测试与门禁以「故意改坏被测行为会变红」为验收标准；禁止空跑、全 `skip`、条件断言和源码扫描冒充行为断言。
 - **理由**：全绿只说明没有断言失败，不说明功能被验证。假绿会让后续改动失去信号。
 - **后果**：新功能先写验收标准再实现；审查清单检查测试可失败；覆盖率只统计纯逻辑层 `app/lib/**`。
+
+### ADR-006：根指令文件保持短，规则外移到领域文档
+
+- **决策**：根 `AGENTS.md` 只保留项目一句话、6 个高频入口、强制规范、不可协商的技术约束、工作流与维护规则；「意图 → 文件」映射移到本文档，目录树与数据流本就归此处，完整反模式表留在 `postmortem/` 与 `code-style.md`。
+- **理由**：根文件默认进入每次会话，逐行占用指令预算，长度上升会降低整体遵循率。目录树与文件地图最容易过期，过期内容会主动误导；完整反模式表与领域细节只在相关任务需要时读更有价值。
+- **后果**：新增规则前先判断归属（根文件 / 领域文档 / skill）；根文件控制在 80 行内，超出时把细节外移而不是继续追加；路径与映射变更时同步本文档。
 
 ---
 

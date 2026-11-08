@@ -15,12 +15,12 @@
 所有 UI 组件从 `~/components/ui/<name>` 导入。不要从 node_modules 直接导入。
 
 ```tsx
-// ✅ 正确
+// 正确
 import { Button } from '~/components/ui/button'
 import { Input } from '~/components/ui/input'
 import { Card, CardHeader, CardContent } from '~/components/ui/card'
 
-// ❌ 错误
+// 错误
 import { Button } from '@/components/ui/button'  // 不要用 @/
 import { Input } from '../components/ui/input'   // 不要用相对路径
 ```
@@ -73,17 +73,17 @@ Base UI 组件已处理好整体结构。额外的 padding 会被坏组件内部
 ### 1.3 交互增强
 
 ```tsx
-// ✅ 标准按钮
+// 标准按钮
 <Button variant="default">提交</Button>
 <Button variant="ghost" size="icon-sm"><SettingsIcon /></Button>
 
-// ✅ 加载态
+// 加载态
 <Button loading>保存中...</Button>
 
-// ✅ 移动端按压反馈（在主要操作上）
+// 移动端按压反馈（在主要操作上）
 <Button className="active:scale-[0.97]">确认支付</Button>
 
-// ❌ 禁止：手动拼凑按钮样式
+// 禁止：手动拼凑按钮样式
 <button className="bg-blue-500 text-white rounded px-4 py-2">确认</button>
 ```
 
@@ -118,7 +118,7 @@ import { Input } from '~/components/ui/input'
 import { InputGroup, InputGroupAddon, InputGroupInput } from '~/components/ui/input-group'
 import { SearchIcon } from 'lucide-react'
 
-// ✅ 带前缀图标
+// 带前缀图标
 <InputGroup>
   <InputGroupAddon align="inline-start">
     <SearchIcon className="size-4" />
@@ -126,7 +126,7 @@ import { SearchIcon } from 'lucide-react'
   <InputGroupInput placeholder="搜索..." />
 </InputGroup>
 
-// ❌ 禁止
+// 禁止
 <div className="relative">
   <SearchIcon className="absolute left-2 top-1/2 -translate-y-1/2" />
   <Input className="pl-8" />
@@ -253,11 +253,11 @@ toastManager.add({ title: '已保存', type: 'success' })
   - **禁止** 使用纯黑 `#000` 或纯白 `#fff`
 
 ```tsx
-// ✅ 正确
+// 正确
 <SearchIcon className="size-4 text-muted-foreground" />
 <SettingsIcon className="size-5" />  // 继承父级文字颜色
 
-// ❌ 错误
+// 错误
 <SearchIcon className="size-4 text-black dark:text-white" />
 ```
 
@@ -298,13 +298,15 @@ const isTouch = useMediaQuery({ pointer: 'coarse' })  // 触摸设备
 
 ## 7. 常见错误速查（Anti-Patterns）
 
-| 错误                                                            | 正确做法                                                               |
-| --------------------------------------------------------------- | ---------------------------------------------------------------------- |
-| `<button className="bg-blue-500 text-white rounded px-4 py-2">` | `<Button>`                                                             |
-| `<div className="absolute left-2 top-1/2"><Icon /></div>`       | `<InputGroup><InputGroupAddon><Icon /></InputGroupAddon></InputGroup>` |
-| `<div className="bg-white rounded-xl shadow p-6">`              | `<Card><CardContent>...</CardContent></Card>`                          |
-| `className="border-b border-gray-200"` 在设置列表               | `Frame` + `FramePanel` 分组，行间用 `Separator` 或 `border-border`     |
-| `text-black dark:text-white`                                    | `text-foreground`                                                      |
-| `bg-white dark:bg-gray-900`                                     | `bg-background` 或 `bg-card`                                           |
-| `<hr />` 分割两个区域                                           | `<Separator />` 来自 `~/components/ui/separator`                       |
-| 导入 `@/components/ui/button`                                   | 导入 `~/components/ui/button`                                          |
+| 错误                                                            | 正确做法                                                                    |
+| --------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| `<button className="bg-blue-500 text-white rounded px-4 py-2">` | `<Button>`                                                                  |
+| `<div className="absolute left-2 top-1/2"><Icon /></div>`       | `<InputGroup><InputGroupAddon><Icon /></InputGroupAddon></InputGroup>`      |
+| `<div className="bg-white rounded-xl shadow p-6">`              | `<Card><CardContent>...</CardContent></Card>`                               |
+| `className="border-b border-gray-200"` 在设置列表               | `Frame` + `FramePanel` 分组，行间用 `Separator` 或 `border-border`          |
+| `text-black dark:text-white`                                    | `text-foreground`                                                           |
+| `bg-white dark:bg-gray-900`                                     | `bg-background` 或 `bg-card`                                                |
+| `<hr />` 分割两个区域                                           | `<Separator />` 来自 `~/components/ui/separator`                            |
+| 导入 `@/components/ui/button`                                   | 导入 `~/components/ui/button`                                               |
+| 窄屏把表格压到标题列一字一行                                    | `md` 以下换成堆叠列表，见 [patterns.md §4](./patterns.md#4-行与卡片)        |
+| 同一数字在标题、读数与脚注里各写一遍                            | 只保留层级最高的一处，见 [information-density.md](./information-density.md) |

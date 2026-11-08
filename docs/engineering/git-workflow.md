@@ -111,6 +111,8 @@ bun run test:coverage # 覆盖率门禁（app/lib ≥ 55%）
 - [ ] 导航使用 `<Link>` / `useSubmit()` / `navigate()`（如适用）
 - [ ] 数据获取路径三态覆盖（loading / empty / error）
 - [ ] 无障碍：焦点可见，图标按钮有可访问名称
+- [ ] UI 变更已按 [information-density.md](../ui-design/information-density.md) 的删除清单检查
+- [ ] 记录型表格在 `md` 以下换成堆叠列表，320 / 390px 无横向溢出
 - [ ] UI 变更附带截图（浏览器实测）
 - [ ] 相关文档已更新（`docs/`、索引、`CHANGELOG.md`）
 - [ ] 文档与界面文案符合 [writing-style.md](../writing-style.md)

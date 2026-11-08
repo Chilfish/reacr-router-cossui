@@ -19,6 +19,7 @@
 - [ ] 文档已同步（相关 `docs/`、`docs/README.md` 索引、`CHANGELOG.md`）
 - [ ] 文档与界面文案符合 `docs/writing-style.md`
 - [ ] 文档中的路径、命令、路由仍能对上代码
+- [ ] UI 改动已按 `docs/ui-design/information-density.md` 的删除清单检查：无重复表述、口径脚注、自证式导航
 
 ## 验证方式
 
