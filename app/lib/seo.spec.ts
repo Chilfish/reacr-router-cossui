@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { generateSEOMeta, generateTitle, mergeMeta, siteConfig } from './seo'
+import { generateSEOMeta, generateTitle, mergeMeta, siteConfig, TITLE_MAX_LENGTH, truncateTitle } from './seo'
 
 describe('generateTitle', () => {
   it('withPageTitle_appendsSiteName', () => {
@@ -13,6 +13,27 @@ describe('generateTitle', () => {
 
   it('withoutPageTitle_returnsSiteName', () => {
     expect(generateTitle()).toBe(siteConfig.name)
+  })
+
+  it('withLongPageTitle_staysWithinTitleMaxLength', () => {
+    const result = generateTitle('页面标题'.repeat(20))
+    expect(result.length).toBeLessThanOrEqual(TITLE_MAX_LENGTH)
+    expect(result.endsWith('…')).toBe(true)
+  })
+})
+
+describe('truncateTitle', () => {
+  it('withinLimit_returnsInputUnchanged', () => {
+    expect(truncateTitle('短标题', 20)).toBe('短标题')
+  })
+
+  it('overLimitWithBoundary_breaksAtLastBoundary', () => {
+    expect(truncateTitle('前端工程化实践 与 React Router 的服务端渲染', 20)).toBe('前端工程化实践 与 React…')
+  })
+
+  it('overLimitWithoutBoundary_hardTruncates', () => {
+    const result = truncateTitle('abcdefghijklmnopqrstuvwxyz', 10)
+    expect(result).toBe('abcdefghi…')
   })
 })
 

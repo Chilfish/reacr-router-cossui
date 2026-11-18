@@ -51,7 +51,7 @@
 | -------- | ---------------------------------------------------------------------------- |
 | 技术栈   | React 19 + React Router v8 SSR + Tailwind CSS v4 + coss / Base UI            |
 | 主题     | `.dark` 类 + CSS 变量；浅色 / 深色 / 跟随系统由 `appConfig` store 持久化     |
-| 字体     | `Inter`；等宽 `Geist Mono`；中文由系统 `sans-serif` 回退（见 `app/app.css`） |
+| 字体     | `Inter Variable`（拉丁，自托管）；中文回退系统字体（见 `app/app.css` 的 `--font-sans-stack`） |
 | 主色     | `rgb(29, 155, 240)`                                                          |
 | 圆角基准 | `--radius: 0.625rem`（10px）                                                 |
 | 断点     | Tailwind 默认断点；`useMediaQuery('max-md')` 按 800px 计算                   |

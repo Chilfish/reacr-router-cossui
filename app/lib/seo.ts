@@ -17,12 +17,40 @@ export const siteConfig = {
 } as const
 
 /**
- * 根据 title 生成标准的页面标题（"页面名 — 站点名" 格式）。
+ * 搜索结果标题的显示上限。超出部分会被搜索引擎截断，
+ * 与其让它在任意位置截断，不如在生成时按词边界收住。
+ */
+export const TITLE_MAX_LENGTH = 60
+
+/**
+ * 把页面标题收在 `maxLength` 以内，超出时以省略号结尾。
+ * 优先在空白或标点处断开，找不到合适位置再硬截。
+ */
+export function truncateTitle(title: string, maxLength = TITLE_MAX_LENGTH): string {
+  if (title.length <= maxLength)
+    return title
+
+  const head = title.slice(0, maxLength - 1)
+  const boundary = Math.max(
+    head.lastIndexOf(' '),
+    head.lastIndexOf('—'),
+    head.lastIndexOf('·'),
+    head.lastIndexOf('、'),
+    head.lastIndexOf('，'),
+  )
+
+  return `${(boundary > maxLength / 2
+    ? head.slice(0, boundary)
+    : head).trimEnd()}…`
+}
+
+/**
+ * 根据 title 生成标准的页面标题（"页面名 — 站点名" 格式），并收在 `TITLE_MAX_LENGTH` 内。
  */
 export function generateTitle(pageTitle?: string): string {
   if (!pageTitle)
     return siteConfig.name
-  return `${pageTitle} — ${siteConfig.name}`
+  return truncateTitle(`${pageTitle} — ${siteConfig.name}`)
 }
 
 export interface SEOMetaInput {

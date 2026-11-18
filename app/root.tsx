@@ -21,20 +21,6 @@ export const meta: Route.MetaFunction = () =>
   generateSEOMeta()
 
 export const links: Route.LinksFunction = () => [
-  { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
-  {
-    rel: 'preconnect',
-    href: 'https://fonts.gstatic.com',
-    crossOrigin: 'anonymous',
-  },
-  {
-    rel: 'stylesheet',
-    href: 'https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Noto+Sans+SC:wght@400;500;700&display=swap',
-  },
-  {
-    rel: 'stylesheet',
-    href: 'https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap',
-  },
   { rel: 'icon', type: 'image/svg+xml', href: '/vite.svg' },
   { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' },
   { rel: 'manifest', href: '/manifest.webmanifest' },
@@ -59,13 +45,15 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <link rel="stylesheet" href={stylesheet} precedence="high" />
       </head>
       <body>
-        <ProgressBar />
+        <div className="isolate relative flex min-h-svh flex-col">
+          <ProgressBar />
 
-        <ToastProvider>
-          <AnchoredToastProvider>
-            {children}
-          </AnchoredToastProvider>
-        </ToastProvider>
+          <ToastProvider>
+            <AnchoredToastProvider>
+              {children}
+            </AnchoredToastProvider>
+          </ToastProvider>
+        </div>
 
         <ScrollRestoration getKey={location => location.pathname} />
         <Scripts nonce={nonce} />

@@ -280,7 +280,7 @@ import { cn } from '~/lib/utils'
 
 ### 6.2 useMediaQuery / useIsMobile — 响应式检测
 
-统一从 `~/hooks/use-media-query` 导入。`app/hooks/use-mobile.ts` 是另一份未使用的实现，不要新增引用。
+统一从 `~/hooks/use-media-query` 导入，它是 coss 的 `useMediaQuery` 实现。
 
 ```tsx
 import { useIsMobile, useMediaQuery } from '~/hooks/use-media-query'

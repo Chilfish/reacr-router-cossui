@@ -283,7 +283,6 @@ rg -n "dark:(bg|text|border)-" app --glob '!app.css'
 - 深色模式需要按页面类型补截图核对，尤其是边框、阴影与状态色。
 - 若引入图表，需要单独评审图表类型、密度与色觉可达性。
 - AI slop 检查清单可以纳入 PR 模板，作为界面改动的自查项。
-- 当前存在两个 `useIsMobile` 实现（`use-media-query.ts` 与 `use-mobile.ts`），需要统一后才能在文档中给出单一入口。
 
 ## 9. 参考清单
 

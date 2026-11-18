@@ -1,12 +1,17 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
-@import '@fontsource-variable/noto-sans';
 @import '@fontsource-variable/inter';
 @import '@fontsource-variable/geist-mono';
 
 @custom-variant dark (&:is(.dark *));
 
 :root {
+  /* 拉丁走自托管 Inter，CJK 走系统字体：单体 CJK webfont 一次首屏要拉几十个子集。 */
+  --font-sans-stack:
+    'Inter Variable', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB',
+    'Microsoft YaHei', 'Source Han Sans SC', 'Noto Sans CJK SC', sans-serif;
+  --font-mono-stack: 'Geist Mono Variable', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace;
+
   --background: var(--color-white);
   --foreground: var(--color-neutral-800);
   --card: var(--color-white);
@@ -101,7 +106,7 @@
 
 @theme inline {
   /* Typography */
-  --font-sans: 'Inter', sans-serif;
+  --font-sans: var(--font-sans-stack);
 
   /* Physics & Motion */
   --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -247,28 +252,29 @@
       translate: 0 0;
     }
   }
-  --font-heading: 'Inter', sans-serif;
-  --font-mono: 'Geist Mono Variable', monospace;
+  --font-heading: var(--font-sans-stack);
+  --font-mono: var(--font-mono-stack);
   --color-code-highlight: var(--code-highlight);
-  --code-foreground: var(--code-foreground);
   --color-code: var(--code);
+  --color-code-foreground: var(--code-foreground);
 }
 
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
+  html {
+    @apply font-sans;
+  }
   body {
-    @apply font-sans bg-background text-foreground;
+    /* position: relative 让 iOS Safari 26+ 的浮层遮罩覆盖视觉视口 */
+    @apply relative bg-background font-sans text-foreground;
   }
   code,
   kbd,
   samp,
   pre {
     font-family: var(--font-mono);
-  }
-  html {
-    @apply font-sans font-mono;
   }
 }
 

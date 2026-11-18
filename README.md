@@ -29,10 +29,10 @@ bun run build
 ```
 app/
   components/
-    ui/         ← coss-ui 组件库（58+ 组件）
-    shared/     ← 脚手架自有组件（ThemeProvider、ProgressBar、Spinner 等）
+    ui/         ← coss-ui 组件库
+    shared/     ← 脚手架自有组件（ThemeProvider、ProgressBar、TimeInput、FileDropzone 等）
   hooks/        ← 通用 hooks（useMediaQuery、useHydrated、useNonce 等）
-  lib/          ← 工具函数（cn、env）
+  lib/          ← 工具函数（cn、seo、files、env.server）
   routes/       ← 路由页面
   stores/       ← Zustand stores
   app.css       ← 全局样式 + 设计 Token
@@ -52,7 +52,7 @@ docs/
 
 ## 特性
 
-- **原生感设计系统** — macOS/iOS 原生美学，完整的浅色/深色主题
+- **原生感设计系统** — 系统字体栈 + 自托管拉丁字体，完整的浅色/深色主题
 - **无障碍优先** — 基于 Base UI，所有组件内置 WAI-ARIA 支持
 - **移动端适配** — 移动端优先的响应式设计，手势操作支持
 - **SSR 就绪** — React Router v8 SSR + Vercel 部署配置
@@ -69,14 +69,15 @@ docs/
 - [交互与状态](docs/ui-design/interaction.md) — 键盘、导航、URL、持久化与 SSR
 - [设计参考综述](docs/ui-design/research.md) — 规范来源、正反例与评审方法
 - [通用组件规范](docs/ui-design/GENERAL.md) — Button、Input、Card 等原子组件
-- [工程规范](docs/engineering/README.md) — 代码规范、Git 流程、发布清单
-- [AGENTS.md](AGENTS.md) — AI Agent 协作指南（意图 → 文件映射、强制规范）
+- [工程规范](docs/engineering/README.md) — 代码规范、性能基线、安全基线、SEO、Git 流程、发布清单
+- [AGENTS.md](AGENTS.md) — AI Agent 协作指南（强制规范、不可协商的技术约束）
 
 ## 使用说明
 
 这是一个脚手架模板，**不是**一个完整的应用。clone 后按需：
 
-1. 删除 `app/routes/home.tsx` 中的示例内容
-2. 删除不需要的 `app/components/ui/` 组件（按需保留）
+1. 修改 `app/lib/seo.ts` 的 `siteConfig`（名称、描述、URL、OG 图），并同步 `public/robots.txt` 与 `public/manifest.webmanifest` 的域名与名称
+2. 删除 `app/routes/home.tsx` 中的示例内容，删除不需要的 `app/components/ui/` 组件
 3. 在 `app/routes.ts` 中添加你的路由
-4. 参考 `docs/` 中的规范编写组件
+4. 按 `docs/engineering/security.md` 配置响应头与 CSP（脚手架不预设，因为取决于部署形态）
+5. 参考 `docs/` 中的规范编写组件

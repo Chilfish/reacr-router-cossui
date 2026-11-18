@@ -108,16 +108,16 @@ import {
 
 ## 4. 浮层
 
-| 形态           | 用途                           | 组件                                             |
-| -------------- | ------------------------------ | ------------------------------------------------ |
-| `Dialog`       | 需要集中注意的任务、详情、预览 | `Dialog` + `DialogPopup`（别名 `DialogContent`） |
-| `AlertDialog`  | 不可逆或高风险确认             | `AlertDialog` + `AlertDialogPopup`               |
-| `Sheet`        | 自包含任务、筛选、批量操作     | `Sheet` + `SheetPopup`（默认右侧）               |
-| `Drawer`       | 移动端底部面板、手势关闭       | `Drawer` + `DrawerPopup`（`position="bottom"`）  |
-| `Popover`      | 轻量筛选、日期、补充信息       | `Popover`                                        |
-| `DropdownMenu` | 低频动作、溢出菜单             | `DropdownMenu`                                   |
-| `ContextMenu`  | 行或卡片的右键动作             | `ContextMenu`                                    |
-| `Command`      | 命令面板、快速跳转             | `Command`                                        |
+| 形态          | 用途                           | 组件                                             |
+| ------------- | ------------------------------ | ------------------------------------------------ |
+| `Dialog`      | 需要集中注意的任务、详情、预览 | `Dialog` + `DialogPopup`（别名 `DialogContent`） |
+| `AlertDialog` | 不可逆或高风险确认             | `AlertDialog` + `AlertDialogPopup`               |
+| `Sheet`       | 自包含任务、筛选、批量操作     | `Sheet` + `SheetPopup`（默认右侧）               |
+| `Drawer`      | 移动端底部面板、手势关闭       | `Drawer` + `DrawerPopup`（`position="bottom"`）  |
+| `Popover`     | 轻量筛选、日期、补充信息       | `Popover`                                        |
+| `Menu`        | 低频动作、溢出菜单             | `Menu` + `MenuPopup`                             |
+| `ContextMenu` | 行或卡片的右键动作             | `ContextMenu`                                    |
+| `Command`     | 命令面板、快速跳转             | `Command`                                        |
 
 - `Dialog` / `AlertDialog` 默认在移动端贴底（`bottomStickOnMobile`），需要居中时传 `bottomStickOnMobile={false}`。
 - `Sheet` 默认从右侧进入；窄屏可改为 `side="bottom"`。它不会按宽度自动切换。

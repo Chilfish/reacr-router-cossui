@@ -10,7 +10,7 @@ docs/
 ├── writing-style.md          # 文档与界面文案的写作规范
 ├── requirements/             # 需求真相源（PRD / 用户故事 / 验收标准）
 ├── planning/                 # 架构 ADR / backlog / 阶段计划
-├── engineering/              # 工程规范（code-style / dependencies / git-workflow / release-checklist）
+├── engineering/              # 工程规范（code-style / performance / security / seo / dependencies / git-workflow / release-checklist）
 ├── ui-design/                # 设计 Token / 排版 / 通用组件规范
 ├── postmortem/               # 事故复盘与高频雷区
 ├── reviews/                  # 代码审查记录
@@ -20,20 +20,23 @@ docs/
 
 ## 二、按任务导航
 
-| 任务场景                | 先读                                                                                                                       | 说明                             |
-| ----------------------- | -------------------------------------------------------------------------------------------------------------------------- | -------------------------------- |
-| 新增功能 / 判断功能边界 | [requirements-spec.md](./requirements/requirements-spec.md) + [user-stories.md](./requirements/user-stories.md)            | FR 编号、验收标准、范围          |
-| 架构级变更              | [architecture.md](./planning/architecture.md)                                                                              | 先读 ADR，再补新 ADR             |
-| 规划下一阶段            | [backlog.md](./planning/backlog.md)                                                                                        | 未决任务、前置条件、来源         |
-| 写代码                  | [code-style.md](./engineering/code-style.md) + [writing-style.md](./writing-style.md)                                      | 命名、类型、测试、文案           |
-| 改依赖 / 升级版本       | [dependencies.md](./engineering/dependencies.md)                                                                           | 版本锁定、升级前置条件           |
-| Commit / PR             | [git-workflow.md](./engineering/git-workflow.md) + [.github/PULL_REQUEST_TEMPLATE.md](../.github/PULL_REQUEST_TEMPLATE.md) | 提交纪律、验证门禁、审查清单     |
-| 里程碑发布              | [release-checklist.md](./engineering/release-checklist.md)                                                                 | 验证、冒烟、文档一致性           |
-| 写代码前防复现          | [postmortem/README.md](./postmortem/README.md)                                                                             | 模板基线雷区、高频雷区、高危文件 |
-| 代码审查                | [reviews/README.md](./reviews/README.md) + [reviews/TEMPLATE.md](./reviews/TEMPLATE.md)                                    | 审查视角、问题分级、承接流程     |
-| 修改 UI / 组件          | [ui-design/README.md](./ui-design/README.md) + [ui-design/GENERAL.md](./ui-design/GENERAL.md)                              | Token、排版、原子组件            |
-| 写文档 / 界面文案       | [writing-style.md](./writing-style.md)                                                                                     | 语气、用词、事实性、反例         |
-| 了解历史决策            | [development-log/](./development-log/) + [archive/](./archive/)                                                            | 按日期查阅；存档不主动读         |
+| 任务场景                | 先读                                                                                                                       | 说明                               |
+| ----------------------- | -------------------------------------------------------------------------------------------------------------------------- | ---------------------------------- |
+| 新增功能 / 判断功能边界 | [requirements-spec.md](./requirements/requirements-spec.md) + [user-stories.md](./requirements/user-stories.md)            | FR 编号、验收标准、范围            |
+| 架构级变更              | [architecture.md](./planning/architecture.md)                                                                              | 先读 ADR，再补新 ADR               |
+| 规划下一阶段            | [backlog.md](./planning/backlog.md)                                                                                        | 未决任务、前置条件、来源           |
+| 写代码                  | [code-style.md](./engineering/code-style.md) + [writing-style.md](./writing-style.md)                                      | 命名、类型、测试、文案             |
+| 页面变慢 / HTML 变大    | [performance.md](./engineering/performance.md)                                                                             | 首屏预算、体积来源、列表与字体     |
+| 接认证 / 部署 / 加外链  | [security.md](./engineering/security.md)                                                                                   | 数据边界、响应头、CSP              |
+| 新增路由 / 改站点信息   | [seo.md](./engineering/seo.md)                                                                                             | meta、标题长度、分享卡片、站点文件 |
+| 改依赖 / 升级版本       | [dependencies.md](./engineering/dependencies.md)                                                                           | 版本锁定、升级前置条件             |
+| Commit / PR             | [git-workflow.md](./engineering/git-workflow.md) + [.github/PULL_REQUEST_TEMPLATE.md](../.github/PULL_REQUEST_TEMPLATE.md) | 提交纪律、验证门禁、审查清单       |
+| 里程碑发布              | [release-checklist.md](./engineering/release-checklist.md)                                                                 | 验证、冒烟、文档一致性             |
+| 写代码前防复现          | [postmortem/README.md](./postmortem/README.md)                                                                             | 模板基线雷区、高频雷区、高危文件   |
+| 代码审查                | [reviews/README.md](./reviews/README.md) + [reviews/TEMPLATE.md](./reviews/TEMPLATE.md)                                    | 审查视角、问题分级、承接流程       |
+| 修改 UI / 组件          | [ui-design/README.md](./ui-design/README.md) + [ui-design/GENERAL.md](./ui-design/GENERAL.md)                              | Token、排版、原子组件              |
+| 写文档 / 界面文案       | [writing-style.md](./writing-style.md)                                                                                     | 语气、用词、事实性、反例           |
+| 了解历史决策            | [development-log/](./development-log/) + [archive/](./archive/)                                                            | 按日期查阅；存档不主动读           |
 
 ## 三、文档生命周期
 

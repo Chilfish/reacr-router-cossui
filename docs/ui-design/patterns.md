@@ -71,7 +71,7 @@
 - 右侧按优先级分三段，最多三个控件簇：
   1. 一个主控件（搜索、筛选或主按钮）；
   2. 常用切换（`SegmentedControl`、`ToggleGroup`）；
-  3. `⋯` 溢出菜单（`DropdownMenu`），放低频与维护动作。
+  3. `⋯` 溢出菜单（`Menu`），放低频与维护动作。
 - 选项多于 3 个且互斥时，用 `Popover` 承载一组带标签的控件；筛选生效时按钮带一个小圆点。
 - 图标按钮使用 `size="icon-sm"`，同时提供 `aria-label` 与 `title`。
 - 批量选择时，工具栏整条换成批量条，动作顺序：全选、主操作、次操作、取消。
@@ -183,7 +183,7 @@
 | 下拉选择           | `Select`                                  |
 | 可搜索选择         | `Combobox` / `Autocomplete` / `Command`   |
 | 带标签的筛选面板   | `Popover` + `Select` / `SegmentedControl` |
-| 低频动作           | `DropdownMenu` / `ContextMenu`            |
+| 低频动作           | `Menu` / `ContextMenu`                    |
 | 行内提示           | `Alert`                                   |
 | 破坏性确认         | `AlertDialog`                             |
 | 自包含任务         | `Sheet` / `Dialog`                        |

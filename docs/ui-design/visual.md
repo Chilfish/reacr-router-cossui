@@ -71,12 +71,12 @@
 
 ## 2. 字体
 
-| 项       | 值                                                 |
-| -------- | -------------------------------------------------- |
-| 正文字体 | `Inter`（`--font-sans`）                           |
-| 标题字体 | `Inter`（`--font-heading`）                        |
-| 等宽字体 | `Geist Mono`（`--font-mono`），用于 id、路径、代码 |
-| 数字     | `tabular-nums`，用于统计、时间、金额               |
+| 项       | 值                                                             |
+| -------- | -------------------------------------------------------------- |
+| 正文字体 | `Inter Variable`（`--font-sans-stack`），中文回退系统字体       |
+| 标题字体 | 同正文（`--font-heading` 指向 `--font-sans-stack`）             |
+| 等宽字体 | `Geist Mono Variable`（`--font-mono-stack`），用于 id、路径、代码 |
+| 数字     | `tabular-nums`，用于统计、时间、金额                            |
 
 ### 2.1 字号档位
 
@@ -180,10 +180,9 @@
 | 空与加载       | `empty.tsx` / `skeleton.tsx` / `spinner.tsx`                                                                 |
 | 提示           | `alert.tsx` / `toast.tsx` / `tooltip.tsx` / `kbd.tsx`                                                        |
 | 浮层           | `dialog.tsx` / `alert-dialog.tsx` / `sheet.tsx` / `drawer.tsx`                                               |
-| 菜单           | `dropdown-menu.tsx` / `context-menu.tsx` / `command.tsx`                                                     |
+| 菜单           | `menu.tsx`（导出 `DropdownMenu*` 别名）/ `context-menu.tsx` / `command.tsx`                                  |
 | 弹出内容       | `popover.tsx` / `preview-card.tsx`                                                                           |
 | 滚动与折叠     | `scroll-area.tsx` / `collapsible.tsx` / `accordion.tsx`                                                      |
-| 媒体           | `media.tsx`                                                                                                  |
 
 组件导入路径统一为 `~/components/ui/<name>`。具体 API 与反例见 [GENERAL.md](./GENERAL.md)。
 
